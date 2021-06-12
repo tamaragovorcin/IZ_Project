@@ -7,11 +7,15 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import attacks.app.view.bayes.estimations.NewEstimation;
+
 public class MenuBar extends JMenuBar {
 
 	private JMenu file;
 	private JMenu neW;
 	private JMenuItem exitItem;
+	private JMenuItem addNewEstimationItem;
+
 
 	public MenuBar() {
 		super();
@@ -25,7 +29,9 @@ public class MenuBar extends JMenuBar {
 
 		this.neW = new JMenu("New");
 		this.neW.setMnemonic('N');
-
+		
+		this.addNewEstimationItem = new JMenuItem("New Bayes Estimation");
+		this.addNewEstimationItem.setMnemonic('E');
 		
 		this.exitItem = new JMenuItem("Exit");
 
@@ -42,7 +48,14 @@ public class MenuBar extends JMenuBar {
 
 	public void initActionListeners() {
 		
-
+		this.addNewEstimationItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//NewEstimation newEstimation = new NewEstimation();
+				//newEstimation.setVisible(true);
+			}
+		});
 		this.exitItem.addActionListener(new ActionListener() {
 
 			@Override

@@ -1,11 +1,18 @@
 package attacks.app;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import attacks.app.model.BayesEstimationModel;
+import attacks.app.model.Symptom;
 import attacks.app.view.mainFrame.MainFrame;
+import attacks.app.miscellaneous.BayesController;
 
 public class Application {
 
@@ -35,10 +42,15 @@ public class Application {
 				PrintAll printAll = new PrintAll();
 				printAll.action();
 
+
 				MainFrame mainFrame = new MainFrame();
 				Singleton.getInstance().setMainFrame(mainFrame);
 
 				mainFrame.setVisible(true);
+
+				
+					
+				
 			}
 		});
 	}

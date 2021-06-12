@@ -1,5 +1,7 @@
 package attacks.app.view.mainFrame;
 
+
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -30,7 +32,7 @@ public class MainFrame extends JFrame {
 		this.initComponents();
 
 		this.setJMenuBar(menuBar);
-		this.setTitle("Medical App: Neurology");
+		this.setTitle("Hardware attacks");
 		this.setLayout(new BorderLayout());
 		ImageIcon logoIcon = new ImageIcon("resources/logo.png");
 		Image logo = logoIcon.getImage();

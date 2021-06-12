@@ -24,7 +24,7 @@ node Skill
 node Infrastructure_Manipulation
 {
      label = "C3";
-     position = (0 410);
+     position = (80 410);
      states = ("Occurred" "Not occurred");
 }
 
@@ -165,7 +165,7 @@ node Authentication
 {
      label = "C12";
      position = (894 624);
-     states = ("Exists" "Doesn't exist");
+     states = ("Yes" "No");
 }
 
 node Exploitability
@@ -192,7 +192,7 @@ node Improper_data_classification
 node Lack_of_employee_awareness
 {
      label = "C3";
-     position = (678 0);
+     position = (678 60);
      states = ("Yes" "No");
 }
 
@@ -206,21 +206,21 @@ node Phishing_Emails
 node Outdated_antivirus
 {
      label = "C5";
-     position = (1491 0);
+     position = (1491 60);
      states = ("Yes" "No");
 }
 
 node Unpatched_operating_systems
 {
      label = "C7";
-     position = (998 0);
+     position = (998 60);
      states = ("Yes" "No");
 }
 
 node Incorrectly_configured_firewalls
 {
      label = "C8";
-     position = (22 0);
+     position = (22 60);
      states = ("Yes" "No");
 }
 
