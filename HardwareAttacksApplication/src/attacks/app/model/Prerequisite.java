@@ -1,34 +1,26 @@
 package attacks.app.model;
 
-import java.util.ArrayList;
+public class Prerequisite {
+	public Prerequisite(String name) {
+		super();
+		this.name = name;
+	}
 
 
-public class Attack {
 	private int id;
 	private String name;
-	private Characteristics characteristics;
 	
 	
-	public Attack() {
+	public Prerequisite() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Attack(int id, String name) {
+	public Prerequisite(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-	}
-
-
-	public Characteristics getCharacteristics() {
-		return characteristics;
-	}
-
-
-	public void setCharacteristics(Characteristics characteristics) {
-		this.characteristics = characteristics;
 	}
 
 
@@ -54,7 +46,7 @@ public class Attack {
 
 	@Override
 	public String toString() {
-		return "Attack [id=" + id + ", name=" + name + "]";
+		return "Prerequisites [id=" + id + ", name=" + name + "]";
 	}
 	
 	

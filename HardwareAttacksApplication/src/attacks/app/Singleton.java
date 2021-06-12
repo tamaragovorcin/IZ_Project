@@ -7,6 +7,7 @@ public class Singleton {
 	private static Singleton instance = new Singleton();
 
 	private MainFrame mainFrame;
+	private boolean modeOfReasoning = false;
 	
 	private Singleton() {
 
@@ -22,6 +23,14 @@ public class Singleton {
 
 	public void setMainFrame(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
+	}
+
+	public boolean isModeOfReasoning() {
+		return modeOfReasoning;
+	}
+
+	public void setModeOfReasoning(boolean modeOfReasoning) {
+		this.modeOfReasoning = modeOfReasoning;
 	}
 
 	
