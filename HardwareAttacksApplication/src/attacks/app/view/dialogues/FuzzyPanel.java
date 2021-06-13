@@ -13,23 +13,18 @@ import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import attacks.app.miscellaneous.FuzzyController;
-import attacks.app.model.Attack;
-import attacks.app.model.Characteristics;
 
 
 public class FuzzyPanel extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private Characteristics characteristics;
 	private double result = 0;
 	private String resultString;
 	private JPanel mainPanel;
@@ -66,22 +61,19 @@ public class FuzzyPanel extends JDialog {
 	private JTextField target_distributionField;
 	
 	
-	private JTextField resultField;
+	private JLabel resultField;
 	
 	private JButton calculateButton;
-	private JButton cancelButton;
-
-	private Dimension buttonDim;
+	
 	private Dimension fieldDim;
 	private Dimension labelDim;
 
 	public FuzzyPanel() {
-		//this.characteristics = new Characteristics();
 		this.initDialog();
 	}
 
 	public void initDialog() {
-		this.setTitle("Evidente characteristics");
+		this.setTitle("Risk vulnerability");
 		this.setPreferredSize(new Dimension(800, 500));
 		this.setResizable(false);
 		this.setLayout(new BorderLayout());
@@ -104,7 +96,6 @@ public class FuzzyPanel extends JDialog {
 
 	public void initComponents() {
 		this.labelDim = new Dimension(300, 25);
-		this.buttonDim = new Dimension(100, 25);
 		this.fieldDim = new Dimension(300, 25);
 
 		this.severityLabel = new JLabel("Severity:");
@@ -112,7 +103,7 @@ public class FuzzyPanel extends JDialog {
 		this.severityLabel.setPreferredSize(labelDim);
 		this.severityField.setPreferredSize(fieldDim);
 		focusListener(this.severityField);
-		keyListener(this.severityField, 1);
+		keyListener(this.severityField);
 
 		this.mainPanel.add(severityLabel);
 		this.mainPanel.add(severityField);
@@ -122,7 +113,7 @@ public class FuzzyPanel extends JDialog {
 		this.likelyhoodLabel.setPreferredSize(labelDim);
 		this.likelyhoodLabel.setPreferredSize(fieldDim);
 		focusListener(this.likelyhoodField);
-		keyListener(this.likelyhoodField, 2);
+		keyListener(this.likelyhoodField);
 
 		this.mainPanel.add(likelyhoodLabel);
 		this.mainPanel.add(likelyhoodField);
@@ -132,7 +123,7 @@ public class FuzzyPanel extends JDialog {
 		this.exploitabilityLabel.setPreferredSize(labelDim);
 		this.exploitabilityLabel.setPreferredSize(fieldDim);
 		focusListener(this.exploitabilityField);
-		keyListener(this.exploitabilityField, 2);
+		keyListener(this.exploitabilityField);
 
 		this.mainPanel.add(exploitabilityLabel);
 		this.mainPanel.add(exploitabilityField);
@@ -142,7 +133,7 @@ public class FuzzyPanel extends JDialog {
 		this.authenticationLabel.setPreferredSize(labelDim);
 		this.authenticationLabel.setPreferredSize(fieldDim);
 		focusListener(this.authenticationField);
-		keyListener(this.authenticationField, 2);
+		keyListener(this.authenticationField);
 
 		this.mainPanel.add(authenticationLabel);
 		this.mainPanel.add(authenticationField);
@@ -153,7 +144,7 @@ public class FuzzyPanel extends JDialog {
 		this.impact_biasLabel.setPreferredSize(labelDim);
 		this.impact_biasLabel.setPreferredSize(fieldDim);
 		focusListener(this.impact_biasField);
-		keyListener(this.impact_biasField, 2);
+		keyListener(this.impact_biasField);
 
 		this.mainPanel.add(impact_biasLabel);
 		this.mainPanel.add(impact_biasField);
@@ -163,7 +154,7 @@ public class FuzzyPanel extends JDialog {
 		this.access_vectorLabel.setPreferredSize(labelDim);
 		this.access_vectorLabel.setPreferredSize(fieldDim);
 		focusListener(this.access_vectorField);
-		keyListener(this.access_vectorField, 2);
+		keyListener(this.access_vectorField);
 
 		this.mainPanel.add(access_vectorLabel);
 		this.mainPanel.add(access_vectorField);
@@ -173,7 +164,7 @@ public class FuzzyPanel extends JDialog {
 		this.access_complexityLabel.setPreferredSize(labelDim);
 		this.access_complexityLabel.setPreferredSize(fieldDim);
 		focusListener(this.access_complexityField);
-		keyListener(this.access_complexityField, 2);
+		keyListener(this.access_complexityField);
 
 		this.mainPanel.add(access_complexityLabel);
 		this.mainPanel.add(access_complexityField);
@@ -183,7 +174,7 @@ public class FuzzyPanel extends JDialog {
 		this.confidentiality_impactLabel.setPreferredSize(labelDim);
 		this.confidentiality_impactLabel.setPreferredSize(fieldDim);
 		focusListener(this.confidentiality_impactField);
-		keyListener(this.confidentiality_impactField, 2);
+		keyListener(this.confidentiality_impactField);
 
 		this.mainPanel.add(confidentiality_impactLabel);
 		this.mainPanel.add(confidentiality_impactField);
@@ -193,7 +184,7 @@ public class FuzzyPanel extends JDialog {
 		this.availability_impactLabel.setPreferredSize(labelDim);
 		this.availability_impactLabel.setPreferredSize(fieldDim);
 		focusListener(this.availability_impactField);
-		keyListener(this.availability_impactField, 2);
+		keyListener(this.availability_impactField);
 
 		this.mainPanel.add(availability_impactLabel);
 		this.mainPanel.add(availability_impactField);
@@ -204,7 +195,7 @@ public class FuzzyPanel extends JDialog {
 		this.remediation_levelLabel.setPreferredSize(labelDim);
 		this.remediation_levelLabel.setPreferredSize(fieldDim);
 		focusListener(this.remediation_levelField);
-		keyListener(this.remediation_levelField, 2);
+		keyListener(this.remediation_levelField);
 
 		this.mainPanel.add(remediation_levelLabel);
 		this.mainPanel.add(remediation_levelField);
@@ -214,7 +205,7 @@ public class FuzzyPanel extends JDialog {
 		this.report_confidenceLabel.setPreferredSize(labelDim);
 		this.report_confidenceLabel.setPreferredSize(fieldDim);
 		focusListener(this.report_confidenceField);
-			keyListener(this.report_confidenceField, 2);
+			keyListener(this.report_confidenceField);
 
 		this.mainPanel.add(report_confidenceLabel);
 		this.mainPanel.add(report_confidenceField);
@@ -224,7 +215,7 @@ public class FuzzyPanel extends JDialog {
 		this.collateral_damage_potentialLabel.setPreferredSize(labelDim);
 		this.collateral_damage_potentialLabel.setPreferredSize(fieldDim);
 		focusListener(this.collateral_damage_potentialField);
-		keyListener(this.collateral_damage_potentialField, 2);
+		keyListener(this.collateral_damage_potentialField);
 
 		this.mainPanel.add(collateral_damage_potentialLabel);
 		this.mainPanel.add(collateral_damage_potentialField);
@@ -234,7 +225,7 @@ public class FuzzyPanel extends JDialog {
 		this.target_distributionLabel.setPreferredSize(labelDim);
 		this.target_distributionLabel.setPreferredSize(fieldDim);
 		focusListener(this.target_distributionField);
-		keyListener(this.target_distributionField, 2);
+		keyListener(this.target_distributionField);
 
 		this.mainPanel.add(target_distributionLabel);
 		this.mainPanel.add(target_distributionField);
@@ -247,12 +238,10 @@ public class FuzzyPanel extends JDialog {
 		panel.add(calculateButton);
 		
 		this.resultLabel = new JLabel("RESULT:");
-		this.resultField = new JTextField();
+		this.resultField = new JLabel();
 		this.resultLabel.setPreferredSize(labelDim);
-		this.resultLabel.setPreferredSize(fieldDim);
-		focusListener(this.resultField);
-		keyListener(this.resultField, 2);
-
+		this.resultField.setPreferredSize(fieldDim);
+	
 		this.mainPanel.add(resultLabel);
 		this.mainPanel.add(resultField);
 		
@@ -284,18 +273,14 @@ public class FuzzyPanel extends JDialog {
 				Double collateral_damage_potential = Double.parseDouble(collateral_damage_potentialField.getText());
 				Double target_distribution = Double.parseDouble(target_distributionField.getText());
 
-				
 			
 				result = controller.calculate(severityDouble, likelyhoodDouble, exploitability, authentication, impact_bias, access_vector, access_complexity, confidentiality_impact, availability_impact, remediation_level, report_confidence, collateral_damage_potential, target_distribution);
-				System.out.println("Rezultattttttttttttttttttttttttttttttttt");
-				System.out.println(result);
 				resultString = String.valueOf(result);
-				
+				resultField.setText(resultString);
 			}
 			
 		});
 		
-		this.resultField.setText(resultString);
 	}
 
 	
@@ -316,9 +301,8 @@ public class FuzzyPanel extends JDialog {
 		});
 	}
 
-	public void keyListener(JTextField textField, int option) {
-		System.out.println(textField.getText());
-		if (option == 1) {
+	public void keyListener(JTextField textField) {
+		
 			textField.addKeyListener(new KeyListener() {
 
 				@Override
@@ -336,32 +320,14 @@ public class FuzzyPanel extends JDialog {
 				@Override
 				public void keyPressed(KeyEvent e) {
 
-				
+					if (!textField.getText().matches("^[0-9]*$")) {
+						textField.setToolTipText("Only numbers are allowed!");
+						textField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+					} else {
+						textField.setBorder(BorderFactory.createLineBorder(new Color(0, 204, 255), 2));
+					}
 
 				}
 			});
-		} else if (option == 2) {
-			textField.addKeyListener(new KeyListener() {
-
-				@Override
-				public void keyTyped(KeyEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void keyReleased(KeyEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void keyPressed(KeyEvent e) {
-
-				
-				}
-			});
-		}
-
 	}
 }
