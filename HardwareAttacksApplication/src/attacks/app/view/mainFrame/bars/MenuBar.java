@@ -7,7 +7,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import attacks.app.view.bayes.estimations.NewEstimation;
 
 public class MenuBar extends JMenuBar {
 

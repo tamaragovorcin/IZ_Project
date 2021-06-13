@@ -17,6 +17,9 @@ import unbbayes.util.extension.bn.inference.IInferenceAlgorithm;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+
+import org.apache.jena.sparql.function.library.max;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,19 +30,14 @@ import java.util.List;
 import java.util.*;
 
 public class SelectSymptoms extends JFrame {
-    public static String attack1 = "";
-    public static String attack2 = "";
-    public static String attack3 = "";
     public static ArrayList<String> selected = new ArrayList<>();
     public static boolean rbr = true;
-    public Map<String, Float> sortedMapRBR = new HashMap<>();
-    String navedeniSimptomi = "";
-    ArrayList<String> simpto = new ArrayList<>();
     private JFrame mainFrame = new JFrame("Hardware attacks");
     private JPanel checkPanel = new JPanel();
     private JPanel mainPanel = new JPanel(new BorderLayout());
     private JPanel descPanel = new JPanel(new BorderLayout());
-    private ArrayList<HashMap<String, Map<String, Float>>> sveRangListe = new ArrayList<HashMap<String, Map<String, Float>>>();
+    public static Map.Entry<String, Float> maxEntry = null;
+    public static String attack = "";
 
 
     public SelectSymptoms() {
@@ -87,8 +85,8 @@ public class SelectSymptoms extends JFrame {
           
 
             checkPanel.setLayout(new BoxLayout(checkPanel, BoxLayout.Y_AXIS));
-            checkPanel.setSize(new Dimension(500, 450));
-            checkPanel.setPreferredSize(new Dimension(500, 450));
+            checkPanel.setSize(new Dimension(1500, 1500));
+            checkPanel.setPreferredSize(new Dimension(1500, 1500));
             JCheckBox Lack_Of_Unserstanding_of_Cyber_Security_Incidents = new JCheckBox("Lack_Of_Unserstanding_of_Cyber_Security_Incidents");
             JCheckBox Incorrectly_configured_firewalls = new JCheckBox("Incorrectly_configured_firewalls");
             JCheckBox Improper_data_classification = new JCheckBox("Improper_data_classification");
@@ -98,10 +96,24 @@ public class SelectSymptoms extends JFrame {
             JCheckBox Unsecured_networks = new JCheckBox("Unsecured_networks");
             JCheckBox Outdated_antivirus = new JCheckBox("Outdated_antivirus");
             JCheckBox Authentication = new JCheckBox("Authentication");
-            JCheckBox Access_Complexity = new JCheckBox("Access_Complexity");
             JCheckBox Requires_prerequisites = new JCheckBox("Prerequisites");
-            JCheckBox Skill = new JCheckBox("Skill");
-            JCheckBox Likelyhood = new JCheckBox("Likelyhood");
+            JLabel Skill = new JLabel("Skill level:");
+            JCheckBox Low_Skill = new JCheckBox("Low");
+            JCheckBox Medium_Skill = new JCheckBox("Medium");
+            JCheckBox High_Skill = new JCheckBox("High");
+
+            JLabel Likelyhood = new JLabel("Likelyhood level:");
+            JCheckBox Low_Likelyhood = new JCheckBox("Low");
+            JCheckBox Medium_Likelyhood = new JCheckBox("Medium");
+            JCheckBox High_Likelyhood = new JCheckBox("High");
+            
+            JLabel Access_Complexity = new JLabel("Access_Complexity level:");
+            JCheckBox Low_Access_Complexity = new JCheckBox("Low");
+            JCheckBox Medium_Access_Complexity= new JCheckBox("Medium");
+            JCheckBox High_Access_Complexity = new JCheckBox("High");
+
+            JLabel napad = new JLabel();
+            JLabel procenat =  new JLabel();
             for (String s : selected) {
                 if (s.equals("Incorrectly_configured_firewalls")) {
                 	Incorrectly_configured_firewalls.setSelected(true);
@@ -121,17 +133,29 @@ public class SelectSymptoms extends JFrame {
                 	Outdated_antivirus.setSelected(true);
                 } else if (s.equals("Authentication")) {
                 	Authentication.setSelected(true);
-                } else if (s.equals("Access_Complexity")) {
-                	Access_Complexity.setSelected(true);
+                } else if (s.equals("Low_Access_Complexity")) {
+                	Low_Access_Complexity.setSelected(true);
                 } else if (s.equals("Requires_prerequisites")) {
                 	Requires_prerequisites.setSelected(true);
-                } else if (s.equals("Skill")) {
-                	Skill.setSelected(true);
-                } else if (s.equals("Likelyhood")) {
-                	Likelyhood.setSelected(true);
+                } else if (s.equals("Low_Likelyhood")) {
+                	Low_Likelyhood.setSelected(true);
+                } else if (s.equals("Low_Skill")) {
+                	Low_Skill.setSelected(true);
+                } else if (s.equals("Medium_Access_Complexity")) {
+                	Medium_Access_Complexity.setSelected(true);
+                } else if (s.equals("Medium_Likelyhood")) {
+                	Medium_Likelyhood.setSelected(true);
+                } else if (s.equals("Medium_Skill")) {
+                	Medium_Skill.setSelected(true);
+                } else if (s.equals("High_Access_Complexity")) {
+                	High_Access_Complexity.setSelected(true);
+                } else if (s.equals("High_Skill")) {
+                	High_Skill.setSelected(true);
+                } else if (s.equals("High_Likelyhood")) {
+                	High_Likelyhood.setSelected(true);
                 }
+                
             }
-
             ImageIcon fin = new ImageIcon("./finish.png");
             Image finIm = fin.getImage(); // transform it
             Image newimgF = finIm.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
@@ -140,36 +164,17 @@ public class SelectSymptoms extends JFrame {
 
             
 
-            String[] diseaseStrings = { "blepharitis", "chronic glaucoma", "cataract",
-                    "macular degeneration", "dry eye of unknown cause", "eye alignment disorder", "corneal abrasion",
-                    "cornea infection", "retinal detachment", "optic neuritis", "iridocyclitis",
-                    "subconjunctival hemorrhage", "floaters"
-            };
-            JPanel combo = new JPanel();
-            combo.setVisible(false);
-            // combo.setLayout(new FlowLayout());
-            combo.setLayout(new BoxLayout(combo, BoxLayout.X_AXIS));
-            combo.setSize(new Dimension(400, 40));
-            combo.setPreferredSize(new Dimension(400, 40));
-            JComboBox diseaseList = new JComboBox(diseaseStrings);
-            diseaseList.setSize(new Dimension(250, 20));
-            diseaseList.setPreferredSize(new Dimension(250, 20));
-            diseaseList.setSelectedIndex(0);
-            JLabel diagnosis = new JLabel("      Diagnosis:   ");
-            combo.add(diagnosis);
-            combo.add(diseaseList);
+          
 
             rbrBtn.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent arg0) {
+                public  void actionPerformed(ActionEvent arg0) {
 
                     // TODO Auto-generated method stub
                     rbr = true;
                     done.setVisible(false);
-                    combo.setVisible(true);
 
                     Set<String> selektovaniSimptomi = new HashSet<String>();
-                    sveRangListe = new ArrayList<>();
                     ProbabilisticNetwork net = new ProbabilisticNetwork("app");
 
                     BaseIO io = new NetIO();
@@ -258,7 +263,7 @@ public class SelectSymptoms extends JFrame {
                                 
                             }
                         }
-                        if (Likelyhood.isSelected()) {
+                        if (Low_Likelyhood.isSelected()) {
                             selektovaniSimptomi.add("Likelyhood");
                             if (node.getName().equals("Likelyhood")) {
                             	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Likelyhood");
@@ -271,15 +276,15 @@ public class SelectSymptoms extends JFrame {
                             if (node.getName().equals("Authentication")) {
                             	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Authentication");
                                  godine.addFinding(0);
+                                 
                                 
                             }
                         }
-                        if (Access_Complexity.isSelected()) {
-                            selektovaniSimptomi.add("Access_Complexity");
+                        if (Low_Access_Complexity.isSelected()) {
+                            selektovaniSimptomi.add("Low_Access_Complexity");
                             if (node.getName().equals("Access_Complexity")) {
                             	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Access_Complexity");
                                  godine.addFinding(0);
-                                 System.out.println(((ProbabilisticNode) node).getMarginalAt(0));
                                 
                             }
                         }
@@ -291,11 +296,60 @@ public class SelectSymptoms extends JFrame {
                                  
                             }
                         }
-                        if (Skill.isSelected()) {
-                            selektovaniSimptomi.add("Skill");
+                        if (Low_Skill.isSelected()) {
+                            selektovaniSimptomi.add("Low_Skill");
                             if (node.getName().equals("Skill")) {
                             	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Skill");
                                  godine.addFinding(0);
+                                
+                            }
+                        }
+                        if (Medium_Access_Complexity.isSelected()) {
+                            selektovaniSimptomi.add("Medium_Access_Complexity");
+
+                            if (node.getName().equals("Access_Complexity")) {
+                            	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Access_Complexity");
+                                 godine.addFinding(1);
+                                
+                            }
+                        }
+                        if (Medium_Likelyhood.isSelected()) {
+                            selektovaniSimptomi.add("Medium_Likelyhood");
+                            if (node.getName().equals("Likelyhood")) {
+                            	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Likelyhood");
+                                 godine.addFinding(1);
+                                
+                            }
+                        }
+                        if (Medium_Skill.isSelected()) {
+                            selektovaniSimptomi.add("Medium_Skill");
+                            if (node.getName().equals("Skill")) {
+                            	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Skill");
+                                 godine.addFinding(1);
+                                
+                            }
+                        }
+                        if (High_Access_Complexity.isSelected()) {
+                            selektovaniSimptomi.add("High_Access_Complexity");
+                            if (node.getName().equals("Access_Complexity")) {
+                            	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Access_Complexity");
+                                 godine.addFinding(2);
+                                
+                            }
+                        }
+                        if (High_Likelyhood.isSelected()) {
+                            selektovaniSimptomi.add("High_Likelyhood");
+                            if (node.getName().equals("Likelyhood")) {
+                            	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Likelyhood");
+                                 godine.addFinding(2);
+                                
+                            }
+                        }
+                        if (High_Skill.isSelected()) {
+                            selektovaniSimptomi.add("High_Skill");
+                            if (node.getName().equals("Skill")) {
+                            	 ProbabilisticNode godine = (ProbabilisticNode) net.getNode("Skill");
+                                 godine.addFinding(2);
                                 
                             }
                         }
@@ -303,7 +357,6 @@ public class SelectSymptoms extends JFrame {
 
                     }
                   
-                    System.out.println("-----------------------------");
                     try {
                         net.updateEvidences();
                     } catch (Exception e) {
@@ -311,7 +364,8 @@ public class SelectSymptoms extends JFrame {
                     }
                     
                  
-                 
+
+
                     ArrayList<String> simptoms = new ArrayList<>();
                     simptoms.add("Lack_Of_Unserstanding_of_Cyber_Security_Incidents");
                     simptoms.add("Incorrectly_configured_firewalls");
@@ -327,43 +381,89 @@ public class SelectSymptoms extends JFrame {
                     simptoms.add("Requires_prerequisites");
                     simptoms.add("Skill");
                     simptoms.add("Likelyhood");
-                    HashMap<String, Float> map = new HashMap<String, Float>();
-                    for (Node node : nodeList) {
-                    	for(String selektovan : simptoms) {
-                    		if(!node.getName().equals(selektovan))
-                    			map.put(node.getName(), ((ProbabilisticNode) node).getMarginalAt(0));
-                    	}
+                    
+                    HashMap<String,Float> attacks = new HashMap<>();
+                    attacks.put("Obstruction", ((ProbabilisticNode) net.getNode("Obstruction")).getMarginalAt(0));
+                    attacks.put("Cellular_Jamming", ((ProbabilisticNode) net.getNode("Cellular_Jamming")).getMarginalAt(0));
+                    attacks.put("File_Manipulation", ((ProbabilisticNode) net.getNode("File_Manipulation")).getMarginalAt(0));
+                    attacks.put("Configaration_Environment_Manipulation", ((ProbabilisticNode) net.getNode("Configaration_Environment_Manipulation")).getMarginalAt(0));
+                    attacks.put("Infrastructure_Manipulation", ((ProbabilisticNode) net.getNode("Infrastructure_Manipulation")).getMarginalAt(0));
+                    attacks.put("Software_Integrity_Attack", ((ProbabilisticNode) net.getNode("Software_Integrity_Attack")).getMarginalAt(0));
+                    attacks.put("Modification_During_Manufacture", ((ProbabilisticNode) net.getNode("Modification_During_Manufacture")).getMarginalAt(0));
+                    attacks.put("Manipulation_During_Distribution", ((ProbabilisticNode) net.getNode("Manipulation_During_Distribution")).getMarginalAt(0));
+                    attacks.put("Hardware_Integrity_Attack", ((ProbabilisticNode) net.getNode("Hardware_Integrity_Attack")).getMarginalAt(0));
+                    attacks.put("Malicious_Logic_Insertion", ((ProbabilisticNode) net.getNode("Malicious_Logic_Insertion")).getMarginalAt(0));
+                    attacks.put("Exploitation_of_Trusted_Identifiers", ((ProbabilisticNode) net.getNode("Exploitation_of_Trusted_Identifiers")).getMarginalAt(0));
+                    attacks.put("Contaminate_Resource", ((ProbabilisticNode) net.getNode("Contaminate_Resource")).getMarginalAt(0));
+                    attacks.put("Authentication_Abuse", ((ProbabilisticNode) net.getNode("Authentication_Abuse")).getMarginalAt(0));
+                    attacks.put("Authentication_Bypass", ((ProbabilisticNode) net.getNode("Authentication_Bypass")).getMarginalAt(0));
+                    attacks.put("Physical_Theft", ((ProbabilisticNode) net.getNode("Physical_Theft")).getMarginalAt(0));
+                    attacks.put("Use_of_Known_Domain_Credentials", ((ProbabilisticNode) net.getNode("Use_of_Known_Domain_Credentials")).getMarginalAt(0));
+                    attacks.put("Infected_Memory", ((ProbabilisticNode) net.getNode("Infected_Memory")).getMarginalAt(0));
+                    attacks.put("Bypassing_Physical_Security", ((ProbabilisticNode) net.getNode("Bypassing_Physical_Security")).getMarginalAt(0));
+                    attacks.put("Man_in_the_Middle_Attack", ((ProbabilisticNode) net.getNode("Man_in_the_Middle_Attack")).getMarginalAt(0));
+                    attacks.put("Privilege_Abuse", ((ProbabilisticNode) net.getNode("Privilege_Abuse")).getMarginalAt(0));
+                    attacks.put("Cache_poisoning", ((ProbabilisticNode) net.getNode("Cache_poisoning")).getMarginalAt(0));
+                    attacks.put("Audit_Log_Manipulation", ((ProbabilisticNode) net.getNode("Audit_Log_Manipulation")).getMarginalAt(0));
+                    attacks.put("DNS_Cache_Poisoning", ((ProbabilisticNode) net.getNode("DNS_Cache_Poisoning")).getMarginalAt(0));
+                    attacks.put("Web_Logs_Tampering", ((ProbabilisticNode) net.getNode("Web_Logs_Tampering")).getMarginalAt(0));
+                    attacks.put("Artificially_Inflate_File_Sizes", ((ProbabilisticNode) net.getNode("Artificially_Inflate_File_Sizes")).getMarginalAt(0));
+                    attacks.put("Use_of_Captured_Hashes", ((ProbabilisticNode) net.getNode("Use_of_Captured_Hashes")).getMarginalAt(0));
+                    attacks.put("Modification_of_Registry_Run_Keys", ((ProbabilisticNode) net.getNode("Modification_of_Registry_Run_Keys")).getMarginalAt(0));
+                    attacks.put("Schema_Poisoning", ((ProbabilisticNode) net.getNode("Schema_Poisoning")).getMarginalAt(0));
+                    attacks.put("Design_Alteration", ((ProbabilisticNode) net.getNode("Design_Alteration")).getMarginalAt(0));
+                    attacks.put("IP_Address_Blocking", ((ProbabilisticNode) net.getNode("IP_Address_Blocking")).getMarginalAt(0));
+                    attacks.put("Route_Disabling", ((ProbabilisticNode) net.getNode("Route_Disabling")).getMarginalAt(0));
+                    attacks.put("Jamming", ((ProbabilisticNode) net.getNode("Jamming")).getMarginalAt(0));
+                    attacks.put("Disabling_Network_Hardware", ((ProbabilisticNode) net.getNode("Disabling_Network_Hardware")).getMarginalAt(0));
+                    attacks.put("USB_Memory_Attacks", ((ProbabilisticNode) net.getNode("USB_Memory_Attacks")).getMarginalAt(0));
+                    attacks.put("Infected_Hardware", ((ProbabilisticNode) net.getNode("Infected_Hardware")).getMarginalAt(0));
+
+                    for(Map.Entry<String, Float> entry : attacks.entrySet()) {
+                        //System.out.println("Key: " + entry.getKey() + " Value: " + (entry.getValue()));
                     }
 
-                    for(String naziv : map.keySet()) {
-                    	for(Float procenat : map.values()) {
-                    		System.out.println(naziv+" ::::::::: " +procenat);
-                    	}
-                    }
-                    
-                    
-                    CalculationOfTopAttack calculationTop = new CalculationOfTopAttack(sveRangListe);
-                    HashMap<String, Float> calculatedMap = calculationTop.calculation();
-                    sortedMapRBR = RankingList.sortByComparator(calculatedMap, false);
-                    RankingList.printMap(sortedMapRBR);
-                    konacneVrv.setText(calculationTop.printOfProbabilitiesRBR(sortedMapRBR));
 
-                    RankingList rg = new RankingList();
-                    //predlog.setText(rg.prve2Naziv(sortedMapRBR, selektovaniSimptomi));
-                   
+                    for (Map.Entry<String, Float> entry : attacks.entrySet())
+                    {
+                        if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0)
+                        {
+                            maxEntry = entry;
+                        }
+                    }
+                                 napad.setText(maxEntry.getKey());
+                                 procenat.setText(maxEntry.getValue().toString());
                 }
+
+
             });
-
-
+            
+            
+          
+            
+            
+           
+           
+            
+            System.out.println(attack);
             JLabel simpt = new JLabel("Symptoms: ");
             checkPanel.add(simpt);
             checkPanel.add(Lack_of_employee_awareness);
             checkPanel.add(Lack_Of_Unserstanding_of_Cyber_Security_Incidents);
-            checkPanel.add(Skill);
             checkPanel.add(Requires_prerequisites);
-            checkPanel.add(Access_Complexity);
             checkPanel.add(Authentication);
             checkPanel.add(Likelyhood);
+            checkPanel.add(Low_Likelyhood);
+            checkPanel.add(Medium_Likelyhood);
+            checkPanel.add(High_Likelyhood);
+            checkPanel.add(Access_Complexity);
+            checkPanel.add(Low_Access_Complexity);
+            checkPanel.add(Medium_Access_Complexity);
+            checkPanel.add(High_Access_Complexity);
+            checkPanel.add(Skill);
+            checkPanel.add(Low_Skill);
+            checkPanel.add(Medium_Skill);
+            checkPanel.add(High_Skill);
             checkPanel.add(Outdated_antivirus);
             checkPanel.add(Unsecured_networks);
             checkPanel.add(Unpatched_operating_systems);
@@ -376,15 +476,26 @@ public class SelectSymptoms extends JFrame {
             ispitivanja.add(rbrBtn);
             ispitivanja.add(done);
             checkPanel.add(ispitivanja);
-
-           
-
-            checkPanel.add(combo);
-
+            
+            
+            JPanel combo = new JPanel();
+            combo.setVisible(true);
+            //combo.setLayout(new FlowLayout());
+            combo.setSize(new Dimension(400, 40));
+            combo.setPreferredSize(new Dimension(400, 40));
+            JLabel diagnosis = new JLabel("      Most likely attack: ");
+            JLabel razmak =  new JLabel(": ");
+            JLabel proc = new JLabel("%");
+            combo.add(diagnosis);
+            combo.add(napad);
+            combo.add(razmak);
+            combo.add(procenat);
+            combo.add(proc);
+            
            
             JPanel tug = new JPanel(new BorderLayout());
             tug.add(checkPanel, BorderLayout.WEST);
-            tug.add(descPanel, BorderLayout.EAST);
+            tug.add(combo, BorderLayout.EAST);
             JPanel proba = new JPanel(new BorderLayout());
             proba.add(tug, BorderLayout.NORTH);
             //proba.add(pr, BorderLayout.SOUTH);
@@ -401,6 +512,10 @@ public class SelectSymptoms extends JFrame {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
+    }
+    public static String getMaxAttack(String max) {
+    	attack = max;
+    	return attack;
     }
 
 }

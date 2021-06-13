@@ -12,7 +12,6 @@ import javax.swing.UIManager;
 import attacks.app.model.BayesEstimationModel;
 import attacks.app.model.Symptom;
 import attacks.app.view.mainFrame.MainFrame;
-import attacks.app.miscellaneous.BayesController;
 
 public class Application {
 

@@ -116,7 +116,7 @@ node Privilege_Abuse
 {
      label = "C5";
      position = (1048 362);
-     states = ("Occurred" "Nor occured");
+     states = ("Occurred" "Not occurred");
 }
 
 node Authentication_Bypass
@@ -158,7 +158,7 @@ node Access_Complexity
 {
      label = "C11";
      position = (681 612);
-     states = ("Low" "Medium" "State 2");
+     states = ("Low" "Medium" "High");
 }
 
 node Authentication
@@ -172,7 +172,7 @@ node Exploitability
 {
      label = "C13";
      position = (1145 628);
-     states = ("Low" "Medium" "State 2");
+     states = ("Low" "Medium" "High");
 }
 
 node Lack_Of_Unserstanding_of_Cyber_Security_Incidents
@@ -1499,10 +1499,10 @@ potential (Modification_of_Registry_Run_Keys | Exploitability Access_Complexity 
 
 potential (USB_Memory_Attacks | Outdated_antivirus Unsecured_networks)
 {
- data = ((( 0.5 0.5 )
-( 0.5 0.5 ))
-(( 0.5 0.5 )
-( 0.5 0.5 )));
+ data = ((( 0.9 0.1 )
+( 0.6 0.4 ))
+(( 0.9 0.1 )
+( 0.6 0.4 )));
 }
 
 potential (Infected_Memory | Lack_of_employee_awareness Requires_prerequisites)

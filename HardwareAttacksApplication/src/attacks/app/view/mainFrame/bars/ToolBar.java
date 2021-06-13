@@ -13,7 +13,6 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import attacks.app.Singleton;
-import attacks.app.view.bayes.estimations.NewEstimation;
 import bayes.SelectSymptoms;
 
 public class ToolBar extends JToolBar {
