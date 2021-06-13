@@ -111,6 +111,10 @@ public class Characteristics {
 	public void setTarget_distribution(double target_distribution) {
 		this.target_distribution = target_distribution;
 	}
+	public Characteristics() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
     
     
 
