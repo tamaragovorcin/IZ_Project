@@ -8,20 +8,24 @@ import attacks.app.model.Attack;
 
 public class Attacks {
 
-	private ArrayList<Attack> patients;
+	private ArrayList<Attack> attacks;
 
-	
-	public Attacks(ArrayList<Attack> patients) {
+
+	public Attacks() {
+		this.attacks = new ArrayList<Attack>();
+	}
+
+	public Attacks(ArrayList<Attack> attacks) {
 		super();
-		this.patients = patients;
+		this.attacks = attacks;
 	}
 
 	public ArrayList<Attack> getAttacks() {
-		return patients;
+		return attacks;
 	}
 
-	public void setPatients(ArrayList<Attack> patients) {
-		this.patients = patients;
+	public void setPatients(ArrayList<Attack> attacks) {
+		this.attacks = attacks;
 	}
 	
 }

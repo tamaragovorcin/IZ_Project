@@ -13,25 +13,25 @@ public class AttackCreate {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void action(Attack newPatient, String name, String severity, String id, String likelyhood, String weaknesses, String prerequisites, String mitigations) {
-		newPatient.setId(id);
-		newPatient.setName(name);
-		newPatient.setMitigations(mitigations);
-		newPatient.setLikelihood(Likelihood.High);
-		newPatient.setPrerequisites(Prerequisites.Blur);
-		newPatient.setWeaknesses(weaknesses);
+	public void action(Attack newAttack, String id, String name, String severity, String likelyhood, String weaknesses, String prerequisites, String mitigations) {
+		newAttack.setId(id);
+		newAttack.setName(name);
+		newAttack.setMitigations(mitigations);
+		newAttack.setLikelihood(Likelihood.High);
+		newAttack.setPrerequisites(Prerequisites.Blur);
+		newAttack.setWeaknesses(weaknesses);
 		
 		
-		if (severity.equals(Severity.low.toString())) {
-			newPatient.setSeverity(Severity.low);
+		if (severity.equals(Severity.Low.toString())) {
+			newAttack.setSeverity(Severity.Low);
 		} else {
-			newPatient.setSeverity(Severity.High);
+			newAttack.setSeverity(Severity.High);
 		}
 		
 		
 		
 
-		InsertAttack insert = new InsertAttack(newPatient);
+		InsertAttack insert = new InsertAttack(newAttack);
 		insert.insert();
 
 	}

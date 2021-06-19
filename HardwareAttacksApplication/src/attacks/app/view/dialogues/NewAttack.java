@@ -4,6 +4,7 @@ package attacks.app.view.dialogues;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.lang.Math;   
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -55,7 +56,7 @@ public class NewAttack extends JDialog {
 	private JTextField mitigationsField;
 	
 	
-	private String[] severity = { Severity.low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.Very_high.toString() };
+	private String[] severity = { Severity.Low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.Very_high.toString() };
 	private JComboBox<String> severityField;
 	private JCheckBox rightHandBox;
 	
@@ -181,6 +182,13 @@ public class NewAttack extends JDialog {
 		
 		this.add(panel, BorderLayout.SOUTH);
 	}
+	public int genereateId() {
+		int min = 0;  
+		int max = 1500;
+		int b = (int)(Math.random()*(max-min+1)+min);  
+		System.out.println(b);  
+		return b;
+	}
 
 	public void initActionListeners() {
 		this.noteButton.addActionListener(new ActionListener() {
@@ -188,9 +196,8 @@ public class NewAttack extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AttackCreate createAction = new AttackCreate();
-				createAction.action(newAttack, nameField.getText(), "1", mitigationsField.getText(),
-						weaknessesField.getText(), prerequisitesField.getSelectedItem().toString(),
-						severityField.getSelectedItem().toString(), likelihoodField.getSelectedItem().toString());
+				createAction.action(newAttack,String.valueOf(genereateId()) ,nameField.getText(),severityField.getSelectedItem().toString(),likelihoodField.getSelectedItem().toString(),
+						weaknessesField.getText(), prerequisitesField.getSelectedItem().toString(),mitigationsField.getText());
 
 				dispose();
 

@@ -1,7 +1,7 @@
 package attacks.app.enumerations;
 
 public enum Severity {
-low,
+Low,
 Medium,
 High,
 Very_high
