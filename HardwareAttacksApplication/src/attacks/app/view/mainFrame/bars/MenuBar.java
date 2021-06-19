@@ -7,9 +7,16 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import attacks.app.view.dialogues.FuzzyPanel;
+import attacks.app.view.dialogues.NewAttack;
+
+import attacks.app.model.Attack;
+
 public class MenuBar extends JMenuBar {
 
 	private JMenu file;
+	private JMenuItem addNewPatientItem;
+	private JMenuItem addNewExaminationItem;
 	private JMenu neW;
 	private JMenuItem exitItem;
 
@@ -26,10 +33,16 @@ public class MenuBar extends JMenuBar {
 		this.neW = new JMenu("New");
 		this.neW.setMnemonic('N');
 
-		
-		this.exitItem = new JMenuItem("Exit");
+		this.addNewPatientItem = new JMenuItem("New attack");
+		this.addNewPatientItem.setMnemonic('P');
 
 		
+
+		this.exitItem = new JMenuItem("Exit");
+
+		this.neW.add(addNewPatientItem);
+		
+		this.file.add(neW);
 
 		this.file.addSeparator();
 		this.file.add(exitItem);
@@ -41,7 +54,17 @@ public class MenuBar extends JMenuBar {
 	}
 
 	public void initActionListeners() {
-		
+		this.addNewPatientItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NewAttack newPatient = new NewAttack();
+				newPatient.setVisible(true);
+
+			}
+		});
+
+	
 
 		this.exitItem.addActionListener(new ActionListener() {
 

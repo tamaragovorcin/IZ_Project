@@ -1,6 +1,8 @@
 package attacks.app;
 
+import attacks.app.rdf.Attacks;
 import attacks.app.view.mainFrame.MainFrame;
+
 
 public class Singleton {
 
@@ -8,9 +10,22 @@ public class Singleton {
 
 	private MainFrame mainFrame;
 	private boolean modeOfReasoning = false;
+	private Attacks attacks;
 	
 	private Singleton() {
 
+	}
+
+	public Attacks getAttacks() {
+		return attacks;
+	}
+
+	public void setAttacks(Attacks attacks) {
+		this.attacks = attacks;
+	}
+
+	public static void setInstance(Singleton instance) {
+		Singleton.instance = instance;
 	}
 
 	public static Singleton getInstance() {
