@@ -10,9 +10,9 @@ import attacks.app.enumerations.Severity;
 public class Attack {
 	private String id;
 	private String name;
-	private String weaknesses;
+	private ArrayList<String> weaknesses;
 	private Prerequisites prerequisites;
-	private String mitigations;
+	private ArrayList<String>mitigations;
 	private Severity severity;
 	private Likelihood likelihood;
 
@@ -37,13 +37,7 @@ public class Attack {
 		this.name = name;
 	}
 
-	public String getWeaknesses() {
-		return weaknesses;
-	}
-
-	public void setWeaknesses(String weaknesses) {
-		this.weaknesses = weaknesses;
-	}
+	
 
 	public Prerequisites getPrerequisites() {
 		return prerequisites;
@@ -53,11 +47,21 @@ public class Attack {
 		this.prerequisites = prerequisites;
 	}
 
-	public String getMitigations() {
+	
+
+	public ArrayList<String> getWeaknesses() {
+		return weaknesses;
+	}
+
+	public void setWeaknesses(ArrayList<String> weaknesses) {
+		this.weaknesses = weaknesses;
+	}
+
+	public ArrayList<String> getMitigations() {
 		return mitigations;
 	}
 
-	public void setMitigations(String mitigations) {
+	public void setMitigations(ArrayList<String> mitigations) {
 		this.mitigations = mitigations;
 	}
 
@@ -77,8 +81,8 @@ public class Attack {
 		this.likelihood = likelihood;
 	}
 
-	public Attack(String id, String name, String weaknesses, Prerequisites prerequisites, String mitigations,
-			Severity severity, Likelihood likelihood) {
+	public Attack(String id, String name, ArrayList<String> weaknesses, Prerequisites prerequisites,
+			ArrayList<String> mitigations, Severity severity, Likelihood likelihood) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -88,6 +92,8 @@ public class Attack {
 		this.severity = severity;
 		this.likelihood = likelihood;
 	}
+
+
 
 
 	

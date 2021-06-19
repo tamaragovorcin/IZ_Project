@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import attacks.app.rdf.GetAttacks;
 import attacks.app.view.mainFrame.MainFrame;
 
 public class Application {
@@ -34,6 +35,9 @@ public class Application {
 
 				PrintAll printAll = new PrintAll();
 				printAll.action();
+
+				GetAttacks printAll1 = new GetAttacks();
+				printAll1.action();
 
 				MainFrame mainFrame = new MainFrame();
 				Singleton.getInstance().setMainFrame(mainFrame);

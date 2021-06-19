@@ -4,6 +4,7 @@ package attacks.app.view.dialogues;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.lang.Math;   
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,9 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import attacks.app.enumerations.Likelihood;
 import attacks.app.enumerations.Prerequisites;
@@ -69,7 +72,10 @@ public class NewAttack extends JDialog {
 	
 	private JButton noteButton;
 	private JButton cancelButton;
-
+	
+	private JTable jTable1;
+	private JButton changeButton;
+	
 	private Dimension buttonDim;
 	private Dimension fieldDim;
 	private Dimension labelDim;
@@ -117,7 +123,7 @@ public class NewAttack extends JDialog {
 		this.mainPanel.add(nameField);
 		
 		this.mitigationsLabel = new JLabel("Mitigation:");
-		this.mitigationsField = new JTextField("Only letters are allowed.");
+		this.mitigationsField = new JTextField("Input in form mitigation1, mitigation2");
 		this.mitigationsLabel.setPreferredSize(labelDim);
 		this.mitigationsField.setPreferredSize(fieldDim);
 		focusListener(this.mitigationsField);
@@ -127,7 +133,7 @@ public class NewAttack extends JDialog {
 		this.mainPanel.add(mitigationsField);
 		
 		this.weaknessesLabel = new JLabel("Weaknesses:");
-		this.weaknessesField = new JTextField("Only letters are allowed.");
+		this.weaknessesField = new JTextField("Input in form weaknesse1, weaknesse2.");
 		this.weaknessesLabel.setPreferredSize(labelDim);
 		this.weaknessesField.setPreferredSize(fieldDim);
 		focusListener(this.weaknessesField);
@@ -176,10 +182,16 @@ public class NewAttack extends JDialog {
 		this.noteButton = new JButton();
 		this.noteButton.setText("Add new attack");
 		panel.add(noteButton);
-		
-		
+	
 		
 		this.add(panel, BorderLayout.SOUTH);
+	}
+	public int genereateId() {
+		int min = 0;  
+		int max = 1500;
+		int b = (int)(Math.random()*(max-min+1)+min);  
+		System.out.println(b);  
+		return b;
 	}
 
 	public void initActionListeners() {
@@ -188,16 +200,12 @@ public class NewAttack extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AttackCreate createAction = new AttackCreate();
-				createAction.action(newAttack, nameField.getText(), "1", mitigationsField.getText(),
-						weaknessesField.getText(), prerequisitesField.getSelectedItem().toString(),
-						severityField.getSelectedItem().toString(), likelihoodField.getSelectedItem().toString());
+				createAction.action(newAttack,String.valueOf(genereateId()) ,nameField.getText(),severityField.getSelectedItem().toString(),likelihoodField.getSelectedItem().toString(),
+						weaknessesField.getText(), prerequisitesField.getSelectedItem().toString(),mitigationsField.getText());
 
 				dispose();
 
 
-				
-
-				
 			
 				
 				
