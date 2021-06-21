@@ -14,9 +14,14 @@ import javax.swing.JTable;
 
 import attacks.app.miscellaneous.CbrController;
 import attacks.app.miscellaneous.CbrResult;
+import attacks.app.miscellaneous.MitigationsPrologFinder;
 import attacks.app.model.Attack;
 import attacks.app.model.AttackCaseComponent;
+import attacks.app.model.AttackName;
+import attacks.app.model.Mitigation;
 import attacks.app.rdf.GetAttacks;
+import attacks.app.view.dialogues.MitigationsView;
+import attacks.app.view.dialogues.SimilarAttack;
 import ucm.gaia.jcolibri.cbrcore.CBRQuery;
 
 public class ButtonEditorSelect extends DefaultCellEditor {
@@ -64,7 +69,7 @@ public class ButtonEditorSelect extends DefaultCellEditor {
             CBRQuery query = new CBRQuery();
             AttackCaseComponent creditDescription = getAttackCaseComponent(label);
             
-            
+            CbrResult.attackName = creditDescription.getName();
             query.setDescription( creditDescription );
             recommender.cycle(query);
             recommender.postCycle();
@@ -75,12 +80,20 @@ public class ButtonEditorSelect extends DefaultCellEditor {
 
              for(Map.Entry<String,Double> entry  : potentialAttacks2.entrySet()) {
                  System.out.println(entry.getValue() + "    -    " + entry.getKey());
-                 if(entry.getValue()>bestValue) {
+                 if(entry.getValue()>bestValue)  {
                      bestValue=entry.getValue();
                      bestName = entry.getKey();
                  }
              }
-              JOptionPane.showMessageDialog(button, label + bestName);
+             
+            AttackName attack = new AttackName();
+     		attack.setId(0);
+     		attack.setAttackName(bestName);
+     		
+     		 MitigationsView mitigations = new MitigationsView(attack);
+     		mitigations.setVisible(true);
+     		
+              
         } catch (Exception e) {
             e.printStackTrace();
         }

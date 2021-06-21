@@ -67,8 +67,11 @@ public class CbrController implements StandardCBRApplication {
 				AttackCaseComponent ed = (AttackCaseComponent) nse.get_case().getDescription();
 
 				if (!CbrResult.potentialAttacks.containsKey(ed.getName())) {
-					CbrResult.potentialAttacks.put(ed.getName(), nse.getEval());
-					System.out.println(ed.getName() + "   -     " + nse.getEval());
+					if(!CbrResult.attackName.equals(ed.getName())) {
+						CbrResult.potentialAttacks.put(ed.getName(), nse.getEval());
+						System.out.println(ed.getName() + "   -     " + nse.getEval());
+					}
+					
 				}
 				
 			}
@@ -79,7 +82,7 @@ public class CbrController implements StandardCBRApplication {
 		simConfig = new NNConfig(); // KNN configuration
 		simConfig.setDescriptionSimFunction(new Average());  // global similarity function = average
 	
-		simConfig.addMapping(new Attribute("weaknesses", AttackCaseComponent.class), new Equal());
+		simConfig.addMapping(new Attribute("weaknesse", AttackCaseComponent.class), new Equal());
 		simConfig.addMapping(new Attribute("prerequisites", AttackCaseComponent.class), new Equal());
 		simConfig.addMapping(new Attribute("mitigations", AttackCaseComponent.class), new Equal());
 
