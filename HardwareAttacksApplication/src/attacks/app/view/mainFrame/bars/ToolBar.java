@@ -1,30 +1,21 @@
 package attacks.app.view.mainFrame.bars;
 
-import java.awt.Image;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
+
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
-import attacks.app.Singleton;
-import attacks.app.model.Attack;
-
-
+import attacks.app.view.dialogues.AllAttacks;
 import attacks.app.view.dialogues.FuzzyPanel;
 
 
-import unbbayes.io.exception.LoadException;
 
 public class ToolBar extends JToolBar {
 	private JButton fuzzy;
-
+	private JButton allAttacks;
 	public ToolBar() {
 		super(SwingConstants.HORIZONTAL);
 
@@ -40,6 +31,9 @@ public class ToolBar extends JToolBar {
 		this.fuzzy.setText("fuzzy");
 		this.add(fuzzy);
 
+		this.allAttacks = new JButton();
+		this.allAttacks.setText("allAttacks");
+		this.add(allAttacks);
 	}
 
 
@@ -54,10 +48,24 @@ public class ToolBar extends JToolBar {
 					attack = new FuzzyPanel();
 						
 				attack.setVisible(true);
-
+			
+				
 			}
 		});
-		
+		this.allAttacks.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				AllAttacks attack;
+				
+					attack = new AllAttacks();
+						
+				attack.setVisible(true);
+			
+				
+			}
+		});
 	}
 
 	

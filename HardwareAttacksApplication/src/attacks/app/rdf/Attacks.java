@@ -22,5 +22,10 @@ public class Attacks {
 		this.attacks = attacks;
 	}
 
+	public Attacks() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	
 }

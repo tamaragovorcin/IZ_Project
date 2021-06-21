@@ -52,22 +52,22 @@ public class NewAttack extends JDialog {
 	
 	
 
-	private JTextField nameField;
-	private JTextField weaknessesField;
+	public JTextField nameField;
+	public JTextField weaknessesField;
 	//private JTextField prerequisitesField;
-	private JTextField mitigationsField;
+	public JTextField mitigationsField;
 	
 	
 	private String[] severity = { Severity.low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.Very_high.toString() };
-	private JComboBox<String> severityField;
+	public JComboBox<String> severityField;
 	private JCheckBox rightHandBox;
 	
 	private String[] likelihood = {  Likelihood.low.toString(), Likelihood.Medium.toString(),  Likelihood.High.toString() };
-	private JComboBox<String> likelihoodField;
+	public JComboBox<String> likelihoodField;
 	private JCheckBox rightHandBox1;
 	
 	private String[] prerequest = { Prerequisites.Blur.toString(), Prerequisites.LoosingSightHalf.toString(), Prerequisites.LoosingSightFull.toString(), Prerequisites.DoubleVision.toString() };
-	private JComboBox<String> prerequisitesField;
+	public JComboBox<String> prerequisitesField;
 	private JCheckBox rightHandBox2;
 	
 	private JButton noteButton;
@@ -215,7 +215,25 @@ public class NewAttack extends JDialog {
 		
 		
 	}
+	protected String[] podaci() {
+		String[] p = new String[6];
 
+		for (int i = 0; i < p.length; i++) {
+			p[i] = new String();
+		}
+
+		p[0] = nameField.getText().toString(); // ime
+		p[1] = weaknessesField.getText().toString(); 
+		p[2] = mitigationsField.getText().toString(); // datum rodejna
+		p[3] = prerequisitesField.getSelectedItem().toString(); // adresa stanovanja
+		p[4] = prerequisitesField.getSelectedItem().toString(); // br telefona
+		p[5] = likelihoodField.getSelectedItem().toString(); // email
+		p[6] = severityField.getSelectedItem().toString(); // br indeksa
+	
+		 
+		
+		return p;
+	}
 	
 
 	public void focusListener(JTextField textField) {

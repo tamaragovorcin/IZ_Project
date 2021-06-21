@@ -21,18 +21,18 @@ public class AttackCreate {
         
         String[] parts = mitigations.split(",");
         ArrayList<String> splitMitigation = new ArrayList();
-       // splitMitigation = null;
+      
         for (int i = 0; i < parts.length; i++) {
 			splitMitigation.add(parts[i]);
 		}
 		        
         newAttack.setMitigations(splitMitigation);
-        newAttack.setLikelihood(Likelihood.High);
+      //  newAttack.setLikelihood(Likelihood.High);
         newAttack.setPrerequisites(Prerequisites.Blur);
         
         String[] parts1 = weaknesses.split(",");
         ArrayList<String> splitWeaknesses = new ArrayList();
-      //  splitWeaknesses = null;
+      
         for (int i = 0; i < parts1.length; i++) {
         	splitWeaknesses.add(parts1[i]);
 		}
@@ -41,11 +41,21 @@ public class AttackCreate {
 
         if (severity.equals(Severity.low.toString())) {
             newAttack.setSeverity(Severity.low);
-        } else {
+        } else if(severity.equals(Severity.Medium.toString())) {
+            newAttack.setSeverity(Severity.Medium);
+        } else if(severity.equals(Severity.High.toString())) {
             newAttack.setSeverity(Severity.High);
+        }else {
+        	 newAttack.setSeverity(Severity.Very_high);
         }
 
-
+        if (likelyhood.equals(Likelihood.low.toString())) {
+            newAttack.setLikelihood(Likelihood.low);
+        } else if(likelyhood.equals(Likelihood.Medium.toString())) {
+            newAttack.setLikelihood(Likelihood.Medium);
+        } else {
+        	 newAttack.setLikelihood(Likelihood.High);
+        }
 
 
         InsertAttack insert = new InsertAttack(newAttack);
