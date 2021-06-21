@@ -1,7 +1,7 @@
 package attacks.app.enumerations;
 
 public enum Likelihood {
-	low,
+	Low,
 	Medium,
 	High,
 }

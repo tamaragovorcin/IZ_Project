@@ -58,15 +58,34 @@ public class NewAttack extends JDialog {
 	private JTextField mitigationsField;
 	
 	
-	private String[] severity = { Severity.low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.Very_high.toString() };
+	private String[] severity = { Severity.Low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.Very_high.toString() };
 	private JComboBox<String> severityField;
 	private JCheckBox rightHandBox;
 	
-	private String[] likelihood = {  Likelihood.low.toString(), Likelihood.Medium.toString(),  Likelihood.High.toString() };
+	private String[] likelihood = {  Likelihood.Low.toString(), Likelihood.Medium.toString(),  Likelihood.High.toString() };
 	private JComboBox<String> likelihoodField;
 	private JCheckBox rightHandBox1;
 	
-	private String[] prerequest = { Prerequisites.Blur.toString(), Prerequisites.LoosingSightHalf.toString(), Prerequisites.LoosingSightFull.toString(), Prerequisites.DoubleVision.toString() };
+	private String[] prerequest = { Prerequisites.A_SIM_card_that_relies_on_the_DES_cipher.toString(), 
+			Prerequisites.Access_to_the_component_currently_deployed_at_a_victim_location.toString(),
+			Prerequisites.Access_to_the_software_during_the_development_phase.toString(),
+			Prerequisites.An_attacker_and_the_victim_are_both_using_the_same_WiFi_network.toString(),
+			Prerequisites.Application_is_connected_to_the_Windows_domain.toString(),
+			Prerequisites.Configuration_files_must_be_modifiable_by_the_attacker.toString(),
+			Prerequisites.HTTP_TRACE_is_enabled_on_the_web_server.toString(),
+			Prerequisites.Physical_access_to_the_system.toString(),
+			Prerequisites.Requires_the_existence_of_a_physical_target.toString(),
+			Prerequisites.Session_identifiers_that_remain_unchanged_when_the_privilege_levels_change.toString(),
+			Prerequisites.Targeted_software_is_utilizing_application_framework_APIs.toString(),
+			Prerequisites.The_ability_to_calculate_a_card_checksum_and_write_out_a_valid_checksum_value.toString(),
+			Prerequisites.The_adversary_requires_knowledge_of_and_access_to_network_route.toString(),
+			Prerequisites.The_attacker_must_have_direct_access_to_the_target_server.toString(),
+			Prerequisites.The_target_host_is_logging_the_action_and_data_of_the_user.toString(),
+			Prerequisites.The_target_must_use_the_affected_file_without_verifying_its_integrity.toString(),
+			Prerequisites.The_targeted_site_must_contain_hidden_fields_to_be_modified.toString(),
+			Prerequisites.The_various_resources_must_be_discoverable_by_the_attacker.toString(),
+			Prerequisites.Advanced_knowledge_about_the_target_system_and_sub_components.toString() };
+	
 	private JComboBox<String> prerequisitesField;
 	private JCheckBox rightHandBox2;
 	

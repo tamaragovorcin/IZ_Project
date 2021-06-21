@@ -9,6 +9,9 @@ public class Attacks {
 
 	private ArrayList<Attack> attacks;
 
+	public Attacks() {
+		this.attacks = new ArrayList<Attack>();
+	}
 	public Attacks(ArrayList<Attack> attacks) {
 		super();
 		this.attacks = new ArrayList<Attack>();

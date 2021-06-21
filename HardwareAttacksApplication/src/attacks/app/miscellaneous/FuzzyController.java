@@ -29,7 +29,7 @@ private static final String fclFilename = "data/fuzzy/template.fcl";
 		
 		FIS fis = jFuzzyLogic.getFis();  // Fuzzy Inference System
 
-        double result = fis.getVariable("result").getValue();
+        double result = fis.getVariable("risk_vulnerability").getValue();
         
         //System.out.println("Rezultat iz fuzzy logike je: " + result);
         return result;

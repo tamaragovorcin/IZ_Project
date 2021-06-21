@@ -10,9 +10,9 @@ import attacks.app.enumerations.Severity;
 public class Attack {
 	private String id;
 	private String name;
-	private ArrayList<String> weaknesses;
+	private ArrayList<String> weaknesses = new ArrayList<String>();
 	private Prerequisites prerequisites;
-	private ArrayList<String>mitigations;
+	private ArrayList<String>mitigations  = new ArrayList<String>();
 	private Severity severity;
 	private Likelihood likelihood;
 

@@ -290,6 +290,7 @@ public class FuzzyPanel extends JDialog {
 				System.out.println("Rezultattttttttttttttttttttttttttttttttt");
 				System.out.println(result);
 				resultString = String.valueOf(result);
+				resultField.setText(resultString);
 				
 			}
 			
