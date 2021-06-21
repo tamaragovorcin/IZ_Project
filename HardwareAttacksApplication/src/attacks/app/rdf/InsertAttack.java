@@ -53,7 +53,7 @@ public class InsertAttack {
         System.out.println(newAttack.getName());
         System.out.println(newAttack.getSeverity());
         System.out.println(newAttack.getLikelihood());
-        System.out.println(newAttack.getWeaknesses());
+        System.out.println(newAttack.getWeaknesse());
         System.out.println(newAttack.getPrerequisites());
         System.out.println(newAttack.getMitigations());
         String insertString = PREFIX + " INSERT DATA { ";
@@ -62,7 +62,7 @@ public class InsertAttack {
         insertString += " na:id " + "\"" + newAttack.getId() + "\"^^xsd:string; ";
         insertString += " na:name " + "\"" + newAttack.getName() + "\"^^xsd:string; ";
         insertString += " na:mitigations " + "\"" + newAttack.getMitigations() + "\"^^xsd:string; ";
-        insertString += " na:weaknesses " + "\"" + newAttack.getWeaknesses() + "\"^^xsd:string; ";
+        insertString += " na:weaknesses " + "\"" + newAttack.getWeaknesse() + "\"^^xsd:string; ";
         insertString += " na:likelihood " + "\"" + newAttack.getLikelihood().toString() + "\"^^xsd:string;";
         insertString += " na:severity " + "\""  + newAttack.getSeverity().toString() + "\"^^xsd:string;";
         insertString += " na:prerequisites " + "\"" + newAttack.getPrerequisites().toString() + "\"^^xsd:string . } ";

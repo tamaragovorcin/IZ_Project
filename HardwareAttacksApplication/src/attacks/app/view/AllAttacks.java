@@ -40,17 +40,17 @@ public class AllAttacks extends JDialog {
           all = get.getAttacks();
           table = new JTable();
           DefaultTableModel model = new DefaultTableModel();
-          model.setColumnIdentifiers(new Object[]{"Name","Severity","Likelihood", "Prerequisites", "Weekneses", "Mitigations", "Update"});
+          model.setColumnIdentifiers(new Object[]{"Name","Severity","Likelihood", "Prerequisites", "Weekneses", "Mitigations", "Edit"});
 
           table.setModel(model);
 
           for (Attack attack : all) {
         	  System.out.println(attack.getMitigations().toString());
-              model.addRow(new Object[] {attack.getName(),attack.getSeverity(),attack.getLikelihood(),attack.getPrerequisites(),attack.getWeaknesses().toString().substring(1,attack.getWeaknesses().toString().length()-1), attack.getMitigations().toString().subSequence(1, attack.getMitigations().toString().length()-1),attack.getId()});
+              model.addRow(new Object[] {attack.getName(),attack.getSeverity(),attack.getLikelihood(),attack.getPrerequisites(),attack.getWeaknesse(), attack.getMitigations(),attack.getId()});
           }
 
-          table.getColumn("Update").setCellRenderer(new ButtonRenderer());
-          table.getColumn("Update").setCellEditor(
+          table.getColumn("Edit").setCellRenderer(new ButtonRenderer());
+          table.getColumn("Edit").setCellEditor(
               new ButtonEditor(new JCheckBox()));
           JTableHeader header = table.getTableHeader();
           header.setBackground(Color.BLUE);

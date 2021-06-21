@@ -18,16 +18,9 @@ public class AttackCreate {
     public void action(Attack newAttack, String id, String name, String severity, String likelyhood, String weaknesses, String prerequisites, String mitigations) {
         newAttack.setId(id);
         newAttack.setName(name);
-        
-        String[] parts = mitigations.split(",");
-        ArrayList<String> splitMitigation = new ArrayList();
-       // splitMitigation = null;
-        for (int i = 0; i < parts.length; i++) {
-			splitMitigation.add(parts[i]);
-		}
-		        
-        newAttack.setMitigations(splitMitigation);
-        
+       
+        newAttack.setMitigations(mitigations);
+        newAttack.setWeaknesse(weaknesses);
         if (likelyhood.equals("Low")) {
 			newAttack.setLikelihood(Likelihood.Low);
 		} else if (likelyhood.equals("Medium")) {
@@ -115,13 +108,7 @@ public class AttackCreate {
 			newAttack.setPrerequisites(Prerequisites.Application_is_connected_to_the_Windows_domain);
 
         }
-        
-        String[] parts1 = weaknesses.split(",");
-        ArrayList<String> splitWeaknesses = new ArrayList();
-        for (int i = 0; i < parts1.length; i++) {
-        	splitWeaknesses.add(parts1[i]);
-		}
-        newAttack.setWeaknesses(splitWeaknesses);
+     
 
 
         if (severity.equals(Severity.Low.toString())) {

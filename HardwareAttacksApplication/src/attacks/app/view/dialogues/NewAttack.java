@@ -26,8 +26,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import attacks.app.enumerations.Likelihood;
+import attacks.app.enumerations.Mitigations;
 import attacks.app.enumerations.Prerequisites;
 import attacks.app.enumerations.Severity;
+import attacks.app.enumerations.Weaknesses;
 import attacks.app.miscellaneous.FuzzyController;
 import attacks.app.model.Attack;
 import attacks.app.rdf.AttackCreate;
@@ -53,18 +55,14 @@ public class NewAttack extends JDialog {
 	
 
 	private JTextField nameField;
-	private JTextField weaknessesField;
-	//private JTextField prerequisitesField;
-	private JTextField mitigationsField;
+
 	
 	
 	private String[] severity = { Severity.Low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.Very_high.toString() };
 	private JComboBox<String> severityField;
-	private JCheckBox rightHandBox;
 	
 	private String[] likelihood = {  Likelihood.Low.toString(), Likelihood.Medium.toString(),  Likelihood.High.toString() };
 	private JComboBox<String> likelihoodField;
-	private JCheckBox rightHandBox1;
 	
 	private String[] prerequest = { Prerequisites.A_SIM_card_that_relies_on_the_DES_cipher.toString(), 
 			Prerequisites.Access_to_the_component_currently_deployed_at_a_victim_location.toString(),
@@ -87,15 +85,57 @@ public class NewAttack extends JDialog {
 			Prerequisites.Advanced_knowledge_about_the_target_system_and_sub_components.toString() };
 	
 	private JComboBox<String> prerequisitesField;
-	private JCheckBox rightHandBox2;
 	
+	private String[] mitigations = { Mitigations.Always_invalidate_a_session_ID_after_the_user_logout.toString(), 
+			Mitigations.Apply_the_least_privilege_principles.toString(),
+			Mitigations.Checking_headers_in_traffic.toString(),
+			Mitigations.Ensure_that_client_process_and_or_message_is_authenticated.toString(),
+			Mitigations.Ensure_that_design_documentation_is_saved_in_a_secure_location.toString(),
+			Mitigations.Ensure_that_the_content_of_the_file_doesnt_depend_solely_on_the_file_extension.toString(),
+			Mitigations.Ensure_that_the_proper_permissions_are_set_on_local_files.toString(),
+			Mitigations.Ensure_the_web_server_implements_all_relevant_security_patches.toString(),
+			Mitigations.Ensure_users_are_not_reusing_username_password_combinations.toString(),
+			Mitigations.Get_your_Public_Key_signed_by_a_Certificate_Authority.toString(),
+			Mitigations.Identify_programs_that_may_be_used_to_acquire_process_information_and_block_them.toString(),
+			Mitigations.Implement_communications_to_and_from_the_registry_using_secure_protocols.toString(),
+			Mitigations.Include_hosts_file.toString(),
+			Mitigations.Leverage_anti_virus_products.toString(),
+			Mitigations.Limit_users_and_accounts_that_have_remote_interactive_login_access.toString(),
+			Mitigations.Load_configuration_from_separate_process_and_memory_space.toString(),
+			Mitigations.Use_session_identifiers_that_are_difficult_to_guess_or_brute_force.toString(),
+			Mitigations.Use_strong_session_identifiers.toString(),
+			Mitigations.Users_should_not_open_other_tabs_in_the_browser.toString(),
+			Mitigations.Validate_software_updates_before_installing.toString(),
+			Mitigations.Use_strong_session_identifiers.toString()};
+	
+	private JComboBox<String> mitigationsField;
+	
+	private String[] weaknesses = { Weaknesses.Authentication_Bypass_by_Assumed_Immutable_Data.toString(), 
+			Weaknesses.Authentication_Bypass_by_Spoofing.toString(),
+			Weaknesses.Call_to_Non_ubiquitous_API.toString(),
+			Weaknesses.Channel_Accessible_by_NonEndpoint.toString(),
+			Weaknesses.Channel_Accessible_by_NonEndpoint.toString(),
+			Weaknesses.Client_Side_Enforcement_of_Server_Side_Security.toString(),
+			Weaknesses.Command_Shell_in_Externally_Accessible_Directory.toString(),
+			Weaknesses.Device_Unlock_Credential_Sharing.toString(),
+			Weaknesses.Download_of_Code_Without_Integrity_Check.toString(),
+			Weaknesses.Exposure_of_Data_Element_to_Wrong_Session.toString(),
+			Weaknesses.External_Control_of_System_or_Configuration_Setting.toString(),
+			Weaknesses.Improper_Authorization.toString(),
+			Weaknesses.Improper_Control_of_Generation_of_Code.toString(),
+			Weaknesses.Improper_Implementation_of_Lock_Protection_Registers.toString(),
+			Weaknesses.Insufficiently_Protected_Credentials.toString(),
+			Weaknesses.Missing_Encryption_of_Sensitive_Data.toString(),
+			Weaknesses.Missing_Support_for_Integrity_Check.toString(),
+			Weaknesses.Origin_Validation_Error.toString(),
+			Weaknesses.PK_API_Abuse.toString(),
+			Weaknesses.Protection_Mechanism_Failure.toString(),
+			Weaknesses.Use_of_a_Broken_or_Risky_Cryptographic_Algorithm.toString()};
+	
+	private JComboBox<String> weaknessesField;
+		
 	private JButton noteButton;
-	private JButton cancelButton;
-	
-	private JTable jTable1;
-	private JButton changeButton;
-	
-	private Dimension buttonDim;
+
 	private Dimension fieldDim;
 	private Dimension labelDim;
 
@@ -128,38 +168,18 @@ public class NewAttack extends JDialog {
 
 	public void initComponents() {
 		this.labelDim = new Dimension(300, 25);
-		this.buttonDim = new Dimension(100, 25);
 		this.fieldDim = new Dimension(300, 25);
 
 		this.nameLabel = new JLabel("Name:");
 		this.nameField = new JTextField("Only letters are allowed.");
 		this.nameLabel.setPreferredSize(labelDim);
 		this.nameField.setPreferredSize(fieldDim);
-		focusListener(this.nameField);
-		keyListener(this.nameField, 2);
+	
 		
 		this.mainPanel.add(nameLabel);
 		this.mainPanel.add(nameField);
 		
-		this.mitigationsLabel = new JLabel("Mitigation:");
-		this.mitigationsField = new JTextField("Input in form mitigation1, mitigation2");
-		this.mitigationsLabel.setPreferredSize(labelDim);
-		this.mitigationsField.setPreferredSize(fieldDim);
-		focusListener(this.mitigationsField);
-		keyListener(this.mitigationsField, 2);
-		
-		this.mainPanel.add(mitigationsLabel);
-		this.mainPanel.add(mitigationsField);
-		
-		this.weaknessesLabel = new JLabel("Weaknesses:");
-		this.weaknessesField = new JTextField("Input in form weaknesse1, weaknesse2.");
-		this.weaknessesLabel.setPreferredSize(labelDim);
-		this.weaknessesField.setPreferredSize(fieldDim);
-		focusListener(this.weaknessesField);
-		keyListener(this.weaknessesField, 2);
-		
-		this.mainPanel.add(weaknessesLabel);
-		this.mainPanel.add(weaknessesField);
+	
 		
 		
 		
@@ -172,7 +192,6 @@ public class NewAttack extends JDialog {
 		this.mainPanel.add(severityField);
 		
 		
-		this.rightHandBox = new JCheckBox();
 		
 
 		
@@ -183,6 +202,22 @@ public class NewAttack extends JDialog {
 
 		this.mainPanel.add(prerequisitesLabel);
 		this.mainPanel.add(prerequisitesField);
+		
+		this.mitigationsLabel = new JLabel("Mitigation:");
+		this.mitigationsField = new JComboBox<String>(mitigations);
+		this.mitigationsLabel.setPreferredSize(labelDim);
+		this.mitigationsLabel.setPreferredSize(fieldDim);
+
+		this.mainPanel.add(mitigationsLabel);
+		this.mainPanel.add(mitigationsField);
+		
+		this.weaknessesLabel = new JLabel("Weaknesses:");
+		this.weaknessesField = new JComboBox<String>(weaknesses);
+		this.weaknessesLabel.setPreferredSize(labelDim);
+		this.weaknessesLabel.setPreferredSize(fieldDim);
+
+		this.mainPanel.add(weaknessesLabel);
+		this.mainPanel.add(weaknessesField);
 		
 		
 
@@ -220,7 +255,7 @@ public class NewAttack extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				AttackCreate createAction = new AttackCreate();
 				createAction.action(newAttack,String.valueOf(genereateId()) ,nameField.getText(),severityField.getSelectedItem().toString(),likelihoodField.getSelectedItem().toString(),
-						weaknessesField.getText(), prerequisitesField.getSelectedItem().toString(),mitigationsField.getText());
+						weaknessesField.getSelectedItem().toString(), prerequisitesField.getSelectedItem().toString(),mitigationsField.getSelectedItem().toString());
 
 				dispose();
 
@@ -236,69 +271,7 @@ public class NewAttack extends JDialog {
 	}
 
 	
+	
 
-	public void focusListener(JTextField textField) {
-		textField.addFocusListener(new FocusListener() {
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				textField.setText("");
-			}
-		});
-	}
-
-	public void keyListener(JTextField textField, int option) {
-		System.out.println(textField.getText());
-		if (option == 1) {
-			textField.addKeyListener(new KeyListener() {
-
-				@Override
-				public void keyTyped(KeyEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void keyReleased(KeyEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void keyPressed(KeyEvent e) {
-
-				
-
-				}
-			});
-		} else if (option == 2) {
-			textField.addKeyListener(new KeyListener() {
-
-				@Override
-				public void keyTyped(KeyEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void keyReleased(KeyEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void keyPressed(KeyEvent e) {
-
-				
-				}
-			});
-		}
-
-	}
 }

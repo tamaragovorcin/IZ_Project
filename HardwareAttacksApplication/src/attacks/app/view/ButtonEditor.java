@@ -10,6 +10,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+import attacks.app.rdf.AttackCreate;
+import attacks.app.view.dialogues.EditAttack;
+import attacks.app.view.dialogues.NewAttack;
+
 class ButtonEditor extends DefaultCellEditor {
 	  protected JButton button;
 
@@ -47,8 +51,8 @@ class ButtonEditor extends DefaultCellEditor {
 	    if (isPushed) {
 	      // 
 	      // 
-	      JOptionPane.showMessageDialog(button, label + ": Ouch!");
-	      // System.out.println(label + ": Ouch!");
+	      EditAttack newAttack = new EditAttack(label);
+		  newAttack.setVisible(true);
 	    }
 	    isPushed = false;
 	    return new String(label);

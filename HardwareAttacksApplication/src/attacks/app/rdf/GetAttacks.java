@@ -156,27 +156,14 @@ public class GetAttacks {
                 }
                 
                 
-                String mitigationsList = literalMitigations.getString();
-                mitigationsList = mitigationsList.substring(1,mitigationsList.length()-1);
-                String[] splited = mitigationsList.split(",");
+                String mitigations = literalMitigations.getString();
+               
              
-            	ArrayList<String> lista = new ArrayList<String>();
-                for (String mit : splited) {
-                	lista.add(mit);
-                    newAttack.setMitigations(lista);
-
-                }
+            	newAttack.setMitigations(mitigations);
                 
-                String weaknessList = literalWeaknesses.getString();
-                weaknessList = weaknessList.substring(1,weaknessList.length()-1);
-         
-                String[] splited1 = weaknessList.split(",");
-            	ArrayList<String> lista1 = new ArrayList<String>();
-                for (String w : splited1) {
-                	lista1.add(w);
-                	  newAttack.setWeaknesses(lista1);
-
-                }
+                String weaknesses = literalWeaknesses.getString();
+                newAttack.setWeaknesse(weaknesses);
+               
                 ArrayList<Attack> attacksNova = new ArrayList();
             
                 attacksNova.add(newAttack);
