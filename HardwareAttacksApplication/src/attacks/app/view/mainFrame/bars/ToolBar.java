@@ -15,7 +15,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import attacks.app.view.dialogues.NewAttack;
-
+import attacks.app.view.dialogues.SimilarAttack;
 import attacks.app.Singleton;
 import attacks.app.model.Attack;
 import attacks.app.view.dialogues.BayesFrame;
@@ -32,6 +32,7 @@ public class ToolBar extends JToolBar {
 	private JButton mitigations;
 	private JButton allAttacks;
 	private JButton addNewAttack;
+	private JButton similarAttack;
 
 
 	public ToolBar() {
@@ -61,6 +62,9 @@ public class ToolBar extends JToolBar {
 		this.allAttacks.setText("All attacks");
 		this.add(allAttacks);
 	
+		this.similarAttack =  new JButton();
+        this.similarAttack.setText("Find similar attack");
+        this.add(similarAttack);
 	}
 
 
@@ -113,7 +117,16 @@ public class ToolBar extends JToolBar {
 			}
 		});
 		
-		
+		this.similarAttack.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+                SimilarAttack allAttacks = new SimilarAttack();
+                allAttacks.setVisible(true);
+
+            }
+        });
 	}
 
 	
