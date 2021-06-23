@@ -8,15 +8,14 @@ import attacks.app.model.Attack;
 
 public class AttackUpdate{
 
-
     public AttackUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     public void action(Attack newAttack, String id, String name, String severity, String likelyhood, String weaknesses, String prerequisites, String mitigations) {
-        newAttack.setId(id);
-        newAttack.setName(name);
+     
+    	newAttack.setName(name);
       
 		        
         
@@ -119,7 +118,7 @@ public class AttackUpdate{
 
 
 
-        InsertAttack insert = new InsertAttack(newAttack);
+        UpdateAttackDatabase insert = new UpdateAttackDatabase(newAttack);
         insert.insert();
 
     }

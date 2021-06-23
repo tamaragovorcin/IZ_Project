@@ -35,20 +35,30 @@ import attacks.app.model.Attack;
 
 
 
-public class InsertAttack {
+public class UpdateAttackDatabase {
     
     private static final String QUERY_URL = "http://localhost:3030/inzenjeringznanja/sparql";
     private static final String UPDATE_URL = "http://localhost:3030/inzenjeringznanja/update";
     private static final String PREFIX = "PREFIX na: <http://www.inzenjeringznanja.com/na#> PREFIX xsd: <http://w3.org/2001/XMLSchema#>";
     private Attack newAttack;
 
-    public InsertAttack(Attack newAttack) {
+    public UpdateAttackDatabase(Attack newAttack) {
         this.newAttack = newAttack;
     }
 
     public void insert() {
+    	
         //if (checkId(newAttack.getId())) {
-
+    /*	String deleteString = PREFIX 
+    			+ "DELETE { ?IdAttack na:id '1413' }\r\n"
+    			+ "INSERT { ?IdAttack na:id  '2' }\r\n"
+    			+ "WHERE\r\n"
+    			+ "  { ?IdAttack na:id '1413'\r\n"
+    			+ "  } ";
+    	System.out.println(deleteString);
+    	UpdateRequest updateRequest = UpdateFactory.create(deleteString);
+        UpdateProcessor updateProcessor = UpdateExecutionFactory.createRemote(updateRequest, UPDATE_URL);
+        updateProcessor.execute();*/
         String insertString = PREFIX + " INSERT DATA { ";
 
         insertString += " na:" + newAttack.getId() + "attack a na:Attack; ";
@@ -60,9 +70,9 @@ public class InsertAttack {
         insertString += " na:severity " + "\""  + newAttack.getSeverity().toString() + "\"^^xsd:string;";
         insertString += " na:prerequisites " + "\"" + newAttack.getPrerequisites().toString() + "\"^^xsd:string . } ";
 
-        UpdateRequest updateRequest = UpdateFactory.create(insertString);
-        UpdateProcessor updateProcessor = UpdateExecutionFactory.createRemote(updateRequest, UPDATE_URL);
-        updateProcessor.execute();
+        UpdateRequest updateRequest1 = UpdateFactory.create(insertString);
+        UpdateProcessor updateProcessor1 = UpdateExecutionFactory.createRemote(updateRequest1, UPDATE_URL);
+        updateProcessor1.execute();
         System.out.println("prodje upis");
         String insertIntoID = PREFIX + " INSERT DATA { ";
         insertIntoID += " na:IdAttack a na:AttackId ;";
