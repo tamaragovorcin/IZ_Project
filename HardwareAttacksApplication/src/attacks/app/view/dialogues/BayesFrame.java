@@ -85,8 +85,7 @@ public class BayesFrame extends JFrame {
 
             checkPanel.setLayout(new BoxLayout(checkPanel, BoxLayout.Y_AXIS));
             checkPanel.setAutoscrolls(true);
-            checkPanel.setSize(new Dimension(2000, 2000));
-            checkPanel.setPreferredSize(new Dimension(2000, 2000));
+            checkPanel.setPreferredSize(new Dimension(500,700));
             JCheckBox Lack_Of_Unserstanding_of_Cyber_Security_Incidents = new JCheckBox("Lack_Of_Unserstanding_of_Cyber_Security_Incidents");
             JCheckBox Incorrectly_configured_firewalls = new JCheckBox("Incorrectly_configured_firewalls");
             JCheckBox Improper_data_classification = new JCheckBox("Improper_data_classification");
@@ -583,28 +582,49 @@ public class BayesFrame extends JFrame {
             JLabel simpt = new JLabel("Symptoms: ");
             checkPanel.add(simpt);
             checkPanel.add(Lack_of_employee_awareness);
+            checkPanel.add(new JSeparator());
+
             checkPanel.add(Lack_Of_Unserstanding_of_Cyber_Security_Incidents);
-            checkPanel.add(Requires_prerequisites);
+            checkPanel.add(new JSeparator());
+
             checkPanel.add(Authentication);
-            checkPanel.add(Likelyhood);
-            checkPanel.add(Low_Likelyhood);
-            checkPanel.add(Medium_Likelyhood);
-            checkPanel.add(High_Likelyhood);
+            checkPanel.add(new JSeparator());
+            
+            checkPanel.add(Outdated_antivirus);
+            checkPanel.add(new JSeparator());
+
+            checkPanel.add(Unsecured_networks);
+            checkPanel.add(new JSeparator());
+
+            checkPanel.add(Unpatched_operating_systems);
+            checkPanel.add(new JSeparator());
+
+            checkPanel.add(Outdated_antivirus);
+            checkPanel.add(new JSeparator());
+
+            checkPanel.add(Phishing_Emails);
+            checkPanel.add(new JSeparator());
+
+            checkPanel.add(Incorrectly_configured_firewalls);
+            checkPanel.add(new JSeparator());
+
+            checkPanel.add(Improper_data_classification);
+            checkPanel.add(new JSeparator());
+        
             checkPanel.add(Access_Complexity);
             checkPanel.add(Low_Access_Complexity);
             checkPanel.add(Medium_Access_Complexity);
             checkPanel.add(High_Access_Complexity);
+            checkPanel.add(new JSeparator());
+
             checkPanel.add(Skill);
             checkPanel.add(Low_Skill);
             checkPanel.add(Medium_Skill);
             checkPanel.add(High_Skill);
-            checkPanel.add(Outdated_antivirus);
-            checkPanel.add(Unsecured_networks);
-            checkPanel.add(Unpatched_operating_systems);
-            checkPanel.add(Outdated_antivirus);
-            checkPanel.add(Phishing_Emails);
-            checkPanel.add(Incorrectly_configured_firewalls);
-            checkPanel.add(Improper_data_classification);
+            checkPanel.add(new JSeparator());
+
+         
+
             checkPanel.add(Country_region);
             checkPanel.add(North_America);
             checkPanel.add(South_America);
@@ -613,6 +633,8 @@ public class BayesFrame extends JFrame {
             checkPanel.add(Africa);
             checkPanel.add(Australia);
             checkPanel.add(Asia);
+            checkPanel.add(new JSeparator());
+
             checkPanel.add(Number_of_empoyees);
             checkPanel.add(one_five);
             checkPanel.add(five_twenty);
@@ -622,7 +644,7 @@ public class BayesFrame extends JFrame {
             ispitivanja.setLayout(new FlowLayout());
             ispitivanja.add(rbrBtn);
             ispitivanja.add(done);
-            checkPanel.add(ispitivanja);
+            
             
             
             JPanel combo = new JPanel();
@@ -640,13 +662,20 @@ public class BayesFrame extends JFrame {
             
            
             JPanel tug = new JPanel(new BorderLayout());
+            tug.setPreferredSize(new Dimension(1050, 900));
+
             tug.add(checkPanel, BorderLayout.NORTH);
+            tug.add(ispitivanja);
             tug.add(combo, BorderLayout.EAST);
             JPanel proba = new JPanel(new BorderLayout());
+            proba.setPreferredSize(new Dimension(1050, 900));
+
             proba.add(tug, BorderLayout.NORTH);
             mainPanel.add(proba, BorderLayout.CENTER);
+            mainPanel.setPreferredSize(new Dimension(1050, 900));
+
             mainFrame.add(mainPanel);
-            mainFrame.setSize(1100, 600);
+            mainFrame.setSize(1100, 1000);
         } catch (LoadException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();

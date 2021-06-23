@@ -37,7 +37,7 @@ public class AttackCreate {
 		}else if (severity.equals("High")) {
 			newAttack.setSeverity(Severity.High);
 		}else {
-			newAttack.setSeverity(Severity.Very_high);
+			newAttack.setSeverity(Severity.VeryHigh);
 		}
         
         
@@ -110,12 +110,6 @@ public class AttackCreate {
         }
      
 
-
-        if (severity.equals(Severity.Low.toString())) {
-            newAttack.setSeverity(Severity.Low);
-        } else {
-            newAttack.setSeverity(Severity.High);
-        }
 
 
 

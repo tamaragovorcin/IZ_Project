@@ -47,7 +47,7 @@ public class InsertAttack {
     }
 
     public void insert() {
-        //if (checkId(newAttack.getId())) {
+        if (!checkIfAttackAlreadyExists(newAttack.getName())) {
 
         String insertString = PREFIX + " INSERT DATA { ";
 
@@ -63,17 +63,29 @@ public class InsertAttack {
         UpdateRequest updateRequest = UpdateFactory.create(insertString);
         UpdateProcessor updateProcessor = UpdateExecutionFactory.createRemote(updateRequest, UPDATE_URL);
         updateProcessor.execute();
-        System.out.println("prodje upis");
         String insertIntoID = PREFIX + " INSERT DATA { ";
         insertIntoID += " na:IdAttack a na:AttackId ;";
         insertIntoID += " na:id na:" + newAttack.getId() + "Attack . }";
         UpdateRequest updateId = UpdateFactory.create(insertIntoID);
         UpdateProcessor updateProcessorId = UpdateExecutionFactory.createRemote(updateId, UPDATE_URL);
         updateProcessorId.execute();
-        System.out.println("prodje update");
 
+        }else {
+			System.out.println("Attack with this name already exists.");
 
+        }
         
+    }
+    
+    public Boolean checkIfAttackAlreadyExists(String name) {
+    	GetAttacks attacks = new GetAttacks();
+    	for (Attack attack : attacks.getAttacks()) {
+    		if(attack.getName().equals(name)) {
+    			return true;
+    		}
+			
+		}
+    	return false;
     }
 
     

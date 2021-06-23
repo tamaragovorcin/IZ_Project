@@ -29,7 +29,7 @@ public class AllAttacks extends JDialog {
       public AllAttacks(  ) {
     	  
           JFrame frame = new JFrame("All attacks");
-          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+          frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
           JPanel panel = new JPanel();
           panel.setAlignmentX(CENTER_ALIGNMENT);
           panel.setAlignmentY(CENTER_ALIGNMENT);

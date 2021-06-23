@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -49,6 +50,7 @@ public class FuzzyPanel extends JDialog {
 	private JLabel target_distributionLabel;
 	
 	private JLabel resultLabel;
+	private JLabel titleLabel;
 
 
 	private JTextField severityField;
@@ -74,7 +76,7 @@ public class FuzzyPanel extends JDialog {
 	private Dimension buttonDim;
 	private Dimension fieldDim;
 	private Dimension labelDim;
-
+	private Dimension labelDimTitle;
 	public FuzzyPanel() {
 		//this.characteristics = new Characteristics();
 		this.initDialog();
@@ -93,7 +95,7 @@ public class FuzzyPanel extends JDialog {
 
 	public void initPanel() {
 		this.mainPanel = new JPanel();
-		this.mainPanel.setLayout(new GridLayout(9, 2, 10, 30));
+		this.mainPanel.setLayout(new GridLayout(9, 2, 12, 30));
 
 		this.add(mainPanel, BorderLayout.CENTER);
 
@@ -104,14 +106,22 @@ public class FuzzyPanel extends JDialog {
 
 	public void initComponents() {
 		this.labelDim = new Dimension(300, 25);
+		this.labelDimTitle = new Dimension(600, 600);
 		this.buttonDim = new Dimension(100, 25);
 		this.fieldDim = new Dimension(300, 25);
-
+	
+		Box titleText = Box.createHorizontalBox();
+		JLabel title = new JLabel("ENTER NUMBERS FROM 1-10 FOR EACH FIELD");
+		title.setFont (title.getFont().deriveFont(25.0f));
+		titleText.add(title);
+		titleText.setAlignmentX(mainPanel.getWidth() / 2);
+	//	this.mainPanel.add(titleText);
+		
+		
 		this.severityLabel = new JLabel("Severity:");
 		this.severityField = new JTextField("Input number 1 - 10");
 		this.severityLabel.setPreferredSize(labelDim);
 		this.severityField.setPreferredSize(fieldDim);
-		focusListener(this.severityField);
 		keyListener(this.severityField, 1);
 
 		this.mainPanel.add(severityLabel);
@@ -121,8 +131,7 @@ public class FuzzyPanel extends JDialog {
 		this.likelyhoodField = new JTextField("Input number 1 - 10");
 		this.likelyhoodLabel.setPreferredSize(labelDim);
 		this.likelyhoodLabel.setPreferredSize(fieldDim);
-		focusListener(this.likelyhoodField);
-		keyListener(this.likelyhoodField, 2);
+		keyListener(this.likelyhoodField, 1);
 
 		this.mainPanel.add(likelyhoodLabel);
 		this.mainPanel.add(likelyhoodField);
@@ -131,8 +140,7 @@ public class FuzzyPanel extends JDialog {
 		this.exploitabilityField = new JTextField("Input number 1 - 10");
 		this.exploitabilityLabel.setPreferredSize(labelDim);
 		this.exploitabilityLabel.setPreferredSize(fieldDim);
-		focusListener(this.exploitabilityField);
-		keyListener(this.exploitabilityField, 2);
+		keyListener(this.exploitabilityField, 1);
 
 		this.mainPanel.add(exploitabilityLabel);
 		this.mainPanel.add(exploitabilityField);
@@ -141,8 +149,7 @@ public class FuzzyPanel extends JDialog {
 		this.authenticationField = new JTextField("Input number 1 - 10");
 		this.authenticationLabel.setPreferredSize(labelDim);
 		this.authenticationLabel.setPreferredSize(fieldDim);
-		focusListener(this.authenticationField);
-		keyListener(this.authenticationField, 2);
+		keyListener(this.authenticationField, 1);
 
 		this.mainPanel.add(authenticationLabel);
 		this.mainPanel.add(authenticationField);
@@ -152,8 +159,7 @@ public class FuzzyPanel extends JDialog {
 		this.impact_biasField = new JTextField("Input number 1 - 10");
 		this.impact_biasLabel.setPreferredSize(labelDim);
 		this.impact_biasLabel.setPreferredSize(fieldDim);
-		focusListener(this.impact_biasField);
-		keyListener(this.impact_biasField, 2);
+		keyListener(this.impact_biasField, 1);
 
 		this.mainPanel.add(impact_biasLabel);
 		this.mainPanel.add(impact_biasField);
@@ -162,8 +168,7 @@ public class FuzzyPanel extends JDialog {
 		this.access_vectorField = new JTextField("Input number 1 - 10");
 		this.access_vectorLabel.setPreferredSize(labelDim);
 		this.access_vectorLabel.setPreferredSize(fieldDim);
-		focusListener(this.access_vectorField);
-		keyListener(this.access_vectorField, 2);
+		keyListener(this.access_vectorField, 1);
 
 		this.mainPanel.add(access_vectorLabel);
 		this.mainPanel.add(access_vectorField);
@@ -172,8 +177,7 @@ public class FuzzyPanel extends JDialog {
 		this.access_complexityField = new JTextField("Input number 1 - 10");
 		this.access_complexityLabel.setPreferredSize(labelDim);
 		this.access_complexityLabel.setPreferredSize(fieldDim);
-		focusListener(this.access_complexityField);
-		keyListener(this.access_complexityField, 2);
+		keyListener(this.access_complexityField, 1);
 
 		this.mainPanel.add(access_complexityLabel);
 		this.mainPanel.add(access_complexityField);
@@ -182,8 +186,7 @@ public class FuzzyPanel extends JDialog {
 		this.confidentiality_impactField = new JTextField("Input number 1 - 10");
 		this.confidentiality_impactLabel.setPreferredSize(labelDim);
 		this.confidentiality_impactLabel.setPreferredSize(fieldDim);
-		focusListener(this.confidentiality_impactField);
-		keyListener(this.confidentiality_impactField, 2);
+		keyListener(this.confidentiality_impactField, 1);
 
 		this.mainPanel.add(confidentiality_impactLabel);
 		this.mainPanel.add(confidentiality_impactField);
@@ -192,8 +195,7 @@ public class FuzzyPanel extends JDialog {
 		this.availability_impactField = new JTextField("Input number 1 - 10");
 		this.availability_impactLabel.setPreferredSize(labelDim);
 		this.availability_impactLabel.setPreferredSize(fieldDim);
-		focusListener(this.availability_impactField);
-		keyListener(this.availability_impactField, 2);
+		keyListener(this.availability_impactField, 1);
 
 		this.mainPanel.add(availability_impactLabel);
 		this.mainPanel.add(availability_impactField);
@@ -203,8 +205,7 @@ public class FuzzyPanel extends JDialog {
 		this.remediation_levelField = new JTextField("Input number 1 - 10");
 		this.remediation_levelLabel.setPreferredSize(labelDim);
 		this.remediation_levelLabel.setPreferredSize(fieldDim);
-		focusListener(this.remediation_levelField);
-		keyListener(this.remediation_levelField, 2);
+		keyListener(this.remediation_levelField, 1);
 
 		this.mainPanel.add(remediation_levelLabel);
 		this.mainPanel.add(remediation_levelField);
@@ -213,8 +214,7 @@ public class FuzzyPanel extends JDialog {
 		this.report_confidenceField = new JTextField("Input number 1 - 10");
 		this.report_confidenceLabel.setPreferredSize(labelDim);
 		this.report_confidenceLabel.setPreferredSize(fieldDim);
-		focusListener(this.report_confidenceField);
-			keyListener(this.report_confidenceField, 2);
+			keyListener(this.report_confidenceField, 1);
 
 		this.mainPanel.add(report_confidenceLabel);
 		this.mainPanel.add(report_confidenceField);
@@ -223,8 +223,7 @@ public class FuzzyPanel extends JDialog {
 		this.collateral_damage_potentialField = new JTextField("Input number 1 - 10");
 		this.collateral_damage_potentialLabel.setPreferredSize(labelDim);
 		this.collateral_damage_potentialLabel.setPreferredSize(fieldDim);
-		focusListener(this.collateral_damage_potentialField);
-		keyListener(this.collateral_damage_potentialField, 2);
+		keyListener(this.collateral_damage_potentialField, 1);
 
 		this.mainPanel.add(collateral_damage_potentialLabel);
 		this.mainPanel.add(collateral_damage_potentialField);
@@ -233,7 +232,6 @@ public class FuzzyPanel extends JDialog {
 		this.target_distributionField = new JTextField("Input number 1 - 10");
 		this.target_distributionLabel.setPreferredSize(labelDim);
 		this.target_distributionLabel.setPreferredSize(fieldDim);
-		focusListener(this.target_distributionField);
 		keyListener(this.target_distributionField, 2);
 
 		this.mainPanel.add(target_distributionLabel);
@@ -250,7 +248,6 @@ public class FuzzyPanel extends JDialog {
 		this.resultField = new JTextField();
 		this.resultLabel.setPreferredSize(labelDim);
 		this.resultLabel.setPreferredSize(fieldDim);
-		focusListener(this.resultField);
 		keyListener(this.resultField, 2);
 
 		this.mainPanel.add(resultLabel);
@@ -287,7 +284,6 @@ public class FuzzyPanel extends JDialog {
 				
 			
 				result = controller.calculate(severityDouble, likelyhoodDouble, exploitability, authentication, impact_bias, access_vector, access_complexity, confidentiality_impact, availability_impact, remediation_level, report_confidence, collateral_damage_potential, target_distribution);
-				System.out.println("Rezultattttttttttttttttttttttttttttttttt");
 				System.out.println(result);
 				resultString = String.valueOf(result);
 				resultField.setText(resultString);
@@ -299,70 +295,105 @@ public class FuzzyPanel extends JDialog {
 		this.resultField.setText(resultString);
 	}
 
-	
+	public boolean validation() {
+		if (this.severityField.getText().equals("")) {
+			this.severityField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.severityField.setToolTipText("The field can not be empty!");
 
-	public void focusListener(JTextField textField) {
-		textField.addFocusListener(new FocusListener() {
+			return false;
+		} else if (this.access_complexityField.getText().equals("")) {
+			this.access_complexityField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.access_complexityField.setToolTipText("The field can not be empty!");
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
+			return false;
+		} else if (this.access_vectorField.getText().equals("")) {
+			this.access_vectorField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.access_vectorField.setToolTipText("The field can not be empty!");
 
-			}
+			return false;
+		} else if (this.authenticationField.getText().equals("")) {
+			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.authenticationField.setToolTipText("The field can not be empty!");
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				textField.setText("");
-			}
-		});
+			return false;
+		}
+		else if (this.authenticationField.getText().equals("")) {
+			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.authenticationField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}else if (this.authenticationField.getText().equals("")) {
+			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.authenticationField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}else if (this.authenticationField.getText().equals("")) {
+			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.authenticationField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}else if (this.authenticationField.getText().equals("")) {
+			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.authenticationField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}else if (this.authenticationField.getText().equals("")) {
+			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.authenticationField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}else if (this.authenticationField.getText().equals("")) {
+			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.authenticationField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}else if (this.authenticationField.getText().equals("")) {
+			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.authenticationField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}
+		return true;
 	}
 
+
 	public void keyListener(JTextField textField, int option) {
-		System.out.println(textField.getText());
 		if (option == 1) {
 			textField.addKeyListener(new KeyListener() {
 
 				@Override
 				public void keyTyped(KeyEvent e) {
 					// TODO Auto-generated method stub
+					if (!textField.getText().matches("^[0-9]|[0-9][0-9]$")) {
+						textField.setToolTipText("Only numbers are allowed!");
+						textField.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+					} else {
+						textField.setBorder(BorderFactory.createLineBorder(new Color(0, 204, 255), 2));
+					}
 
 				}
 
 				@Override
 				public void keyReleased(KeyEvent e) {
 					// TODO Auto-generated method stub
+					if (!textField.getText().matches("^[0-9]|[0-9][0-9]$")) {
+						textField.setToolTipText("Only numbers are allowed!");
+						textField.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+					} else {
+						textField.setBorder(BorderFactory.createLineBorder(new Color(0, 204, 255), 2));
+					}
 
 				}
 
 				@Override
 				public void keyPressed(KeyEvent e) {
 
-				
-
-				}
-			});
-		} else if (option == 2) {
-			textField.addKeyListener(new KeyListener() {
-
-				@Override
-				public void keyTyped(KeyEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void keyReleased(KeyEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void keyPressed(KeyEvent e) {
 
 				
 				}
 			});
 		}
 
+			
 	}
 }

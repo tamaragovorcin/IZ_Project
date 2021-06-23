@@ -2,6 +2,7 @@ package attacks.app.rdf;
 import java.util.ArrayList;
 
 import attacks.app.enumerations.Likelihood;
+import attacks.app.enumerations.Mitigations;
 import attacks.app.enumerations.Prerequisites;
 import attacks.app.enumerations.Severity;
 import attacks.app.model.Attack;
@@ -35,7 +36,7 @@ public class AttackUpdate{
 		}else if (severity.equals("High")) {
 			newAttack.setSeverity(Severity.High);
 		}else {
-			newAttack.setSeverity(Severity.Very_high);
+			newAttack.setSeverity(Severity.VeryHigh);
 		}
         
         
@@ -107,15 +108,9 @@ public class AttackUpdate{
 
         }
         
-   
-
-        if (severity.equals(Severity.Low.toString())) {
-            newAttack.setSeverity(Severity.Low);
-        } else {
-            newAttack.setSeverity(Severity.High);
-        }
-
-
+        
+        newAttack.setMitigations(mitigations);
+        newAttack.setWeaknesse(weaknesses);
 
 
         UpdateAttackDatabase insert = new UpdateAttackDatabase(newAttack);

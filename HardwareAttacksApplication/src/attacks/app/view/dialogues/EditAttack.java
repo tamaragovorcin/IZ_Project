@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -56,7 +58,7 @@ public class EditAttack extends JDialog {
 
 	
 	
-	private String[] severity = { Severity.Low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.Very_high.toString() };
+	private String[] severity = { Severity.Low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.VeryHigh.toString() };
 	private JComboBox<String> severityField;
 	
 	private String[] likelihood = {  Likelihood.Low.toString(), Likelihood.Medium.toString(),  Likelihood.High.toString() };
@@ -177,7 +179,8 @@ public class EditAttack extends JDialog {
 		this.nameField = new JTextField(attack.getName());
 		this.nameLabel.setPreferredSize(labelDim);
 		this.nameField.setPreferredSize(fieldDim);
-	
+		keyListener(this.nameField, 1);
+
 		
 		this.mainPanel.add(nameLabel);
 		this.mainPanel.add(nameField);
@@ -243,21 +246,17 @@ public class EditAttack extends JDialog {
 		
 		this.add(panel, BorderLayout.SOUTH);
 	}
-	public int genereateId() {
-		int min = 0;  
-		int max = 1500;
-		int b = (int)(Math.random()*(max-min+1)+min);  
-		System.out.println(b);  
-		return b;
+	
+	public String parseName(String name) {
+		return name.replace(" ", "_").toLowerCase();
 	}
-
 	public void initActionListeners() {
 		this.noteButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AttackUpdate createAction = new AttackUpdate();
-				createAction.action(attack,attack.getId() ,nameField.getText(),severityField.getSelectedItem().toString(),likelihoodField.getSelectedItem().toString(),
+				createAction.action(attack,attack.getId() ,parseName(nameField.getText()),severityField.getSelectedItem().toString(),likelihoodField.getSelectedItem().toString(),
 						weaknessesField.getSelectedItem().toString(), prerequisitesField.getSelectedItem().toString(),mitigationsField.getSelectedItem().toString());
 
 				dispose();
@@ -273,7 +272,47 @@ public class EditAttack extends JDialog {
 		
 	}
 
+	public boolean validation() {
+		if (this.nameField.getText().equals("")) {
+			this.nameField.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+			this.nameField.setToolTipText("The field can not be empty!");
+			return false;
+		}
+		return true;
+	}
+
 	
+	public void keyListener(JTextField textField, int option) {
+
+		if (option == 1) {
+			textField.addKeyListener(new KeyListener() {
+
+				@Override
+				public void keyTyped(KeyEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+
+					if (!textField.getText().matches("^[a-zA-Z]+([\\s][a-zA-Z]+)*$")) {
+						textField.setToolTipText("Only letters are allowed!");
+						textField.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+					} else {
+						textField.setBorder(BorderFactory.createLineBorder(new Color(0, 204, 255), 2));
+					}
+				}
+			});
+		}
+
+	}
 	
 
 

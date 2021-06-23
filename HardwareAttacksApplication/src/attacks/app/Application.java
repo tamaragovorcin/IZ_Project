@@ -30,15 +30,7 @@ public class Application {
 				GetAll getAll = new GetAll();
 				getAll.action();
 
-				InitAll initAll = new InitAll();
-				initAll.action();
 
-				PrintAll printAll = new PrintAll();
-				printAll.action();
-
-				/*GetAttacks printAll1 = new GetAttacks();
-				printAll1.action();
-				*/
 				MainFrame mainFrame = new MainFrame();
 				Singleton.getInstance().setMainFrame(mainFrame);
 

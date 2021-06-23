@@ -82,7 +82,7 @@ public class GetAttacks {
 				}else if (literalSeverity.getString().equals("High")) {
 					newAttack.setSeverity(Severity.High);
 				}else {
-					newAttack.setSeverity(Severity.Very_high);
+					newAttack.setSeverity(Severity.VeryHigh);
 				}
                 
                 System.out.println("preres: "+literalPrerequisites.toString());

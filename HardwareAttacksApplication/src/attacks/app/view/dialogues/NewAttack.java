@@ -4,7 +4,9 @@ package attacks.app.view.dialogues;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.lang.Math;   
+import java.lang.Math;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -33,6 +35,7 @@ import attacks.app.enumerations.Weaknesses;
 import attacks.app.miscellaneous.FuzzyController;
 import attacks.app.model.Attack;
 import attacks.app.rdf.AttackCreate;
+import attacks.app.rdf.GetAttacks;
 
 
 
@@ -58,7 +61,7 @@ public class NewAttack extends JDialog {
 
 	
 	
-	private String[] severity = { Severity.Low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.Very_high.toString() };
+	private String[] severity = { Severity.Low.toString(), Severity.Medium.toString(),  Severity.High.toString(), Severity.VeryHigh.toString() };
 	private JComboBox<String> severityField;
 	
 	private String[] likelihood = {  Likelihood.Low.toString(), Likelihood.Medium.toString(),  Likelihood.High.toString() };
@@ -171,9 +174,10 @@ public class NewAttack extends JDialog {
 		this.fieldDim = new Dimension(300, 25);
 
 		this.nameLabel = new JLabel("Name:");
-		this.nameField = new JTextField("Only letters are allowed.");
+		this.nameField = new JTextField();
 		this.nameLabel.setPreferredSize(labelDim);
 		this.nameField.setPreferredSize(fieldDim);
+		keyListener(this.nameField, 1);
 	
 		
 		this.mainPanel.add(nameLabel);
@@ -241,11 +245,20 @@ public class NewAttack extends JDialog {
 		this.add(panel, BorderLayout.SOUTH);
 	}
 	public int genereateId() {
-		int min = 0;  
-		int max = 1500;
-		int b = (int)(Math.random()*(max-min+1)+min);  
-		System.out.println(b);  
-		return b;
+		GetAttacks allAttacks = new GetAttacks();
+		ArrayList<Integer> allId = new ArrayList<Integer>();
+		for (Attack attack : allAttacks.getAttacks()) {
+				allId.add(Integer.parseInt(attack.getId()));
+			 
+			
+		}
+		int id = Collections.max(allId) + 1;
+		System.out.println(id);
+		return id;
+
+	}
+	public String parseName(String name) {
+		return name.replace(" ", "_").toLowerCase();
 	}
 
 	public void initActionListeners() {
@@ -253,14 +266,16 @@ public class NewAttack extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (validation()) {
+
 				AttackCreate createAction = new AttackCreate();
-				createAction.action(newAttack,String.valueOf(genereateId()) ,nameField.getText(),severityField.getSelectedItem().toString(),likelihoodField.getSelectedItem().toString(),
+				createAction.action(newAttack,String.valueOf(genereateId()),parseName(nameField.getText()),severityField.getSelectedItem().toString(),likelihoodField.getSelectedItem().toString(),
 						weaknessesField.getSelectedItem().toString(), prerequisitesField.getSelectedItem().toString(),mitigationsField.getSelectedItem().toString());
 
 				dispose();
 
 
-			
+				}
 				
 				
 			}
@@ -270,8 +285,46 @@ public class NewAttack extends JDialog {
 		
 	}
 
-	
-	
+	public boolean validation() {
+		if (this.nameField.getText().equals("")) {
+			this.nameField.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+			this.nameField.setToolTipText("The field can not be empty!");
+			return false;
+		}
+		return true;
+	}
 
+	
+	public void keyListener(JTextField textField, int option) {
+
+		if (option == 1) {
+			textField.addKeyListener(new KeyListener() {
+
+				@Override
+				public void keyTyped(KeyEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void keyPressed(KeyEvent e) {
+
+					if (!textField.getText().matches("^[a-zA-Z]+([\\s][a-zA-Z]+)*$")) {
+						textField.setToolTipText("Only letters are allowed!");
+						textField.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+					} else {
+						textField.setBorder(BorderFactory.createLineBorder(new Color(0, 204, 255), 2));
+					}
+				}
+			});
+		}
+
+	}
 
 }

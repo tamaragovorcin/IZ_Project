@@ -49,16 +49,21 @@ public class UpdateAttackDatabase {
     public void insert() {
     	
         //if (checkId(newAttack.getId())) {
-    /*	String deleteString = PREFIX 
-    			+ "DELETE { ?IdAttack na:id '1413' }\r\n"
-    			+ "INSERT { ?IdAttack na:id  '2' }\r\n"
-    			+ "WHERE\r\n"
-    			+ "  { ?IdAttack na:id '1413'\r\n"
-    			+ "  } ";
-    	System.out.println(deleteString);
+    	String deleteString = PREFIX 
+    			+ "DELETE"
+    			+"WHERE{"
+    			+"		?attack a na:Attack ;"
+    			+"na:id \""+newAttack.getId()+"\"^^xsd:string ;"
+    					   + "       na:name ?name; "
+    		                + "       na:likelihood ?likelihood; "
+    		                + "       na:weaknesses ?weaknesses; "
+    		                + "       na:severity ?severity; "
+    		                + "       na:prerequisites ?prerequisites; "
+    		                + "       na:mitigations ?mitigations . }";
     	UpdateRequest updateRequest = UpdateFactory.create(deleteString);
         UpdateProcessor updateProcessor = UpdateExecutionFactory.createRemote(updateRequest, UPDATE_URL);
-        updateProcessor.execute();*/
+        updateProcessor.execute();
+        
         String insertString = PREFIX + " INSERT DATA { ";
 
         insertString += " na:" + newAttack.getId() + "attack a na:Attack; ";
@@ -73,14 +78,12 @@ public class UpdateAttackDatabase {
         UpdateRequest updateRequest1 = UpdateFactory.create(insertString);
         UpdateProcessor updateProcessor1 = UpdateExecutionFactory.createRemote(updateRequest1, UPDATE_URL);
         updateProcessor1.execute();
-        System.out.println("prodje upis");
         String insertIntoID = PREFIX + " INSERT DATA { ";
         insertIntoID += " na:IdAttack a na:AttackId ;";
         insertIntoID += " na:id na:" + newAttack.getId() + "Attack . }";
         UpdateRequest updateId = UpdateFactory.create(insertIntoID);
         UpdateProcessor updateProcessorId = UpdateExecutionFactory.createRemote(updateId, UPDATE_URL);
         updateProcessorId.execute();
-        System.out.println("prodje update");
 
 
         

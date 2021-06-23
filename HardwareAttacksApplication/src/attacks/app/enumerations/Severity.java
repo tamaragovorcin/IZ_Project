@@ -4,5 +4,5 @@ public enum Severity {
 Low,
 Medium,
 High,
-Very_high
+VeryHigh
 }
