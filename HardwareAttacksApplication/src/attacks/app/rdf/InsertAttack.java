@@ -48,14 +48,7 @@ public class InsertAttack {
 
     public void insert() {
         //if (checkId(newAttack.getId())) {
-        System.out.println("dodje do metode insert");
-        System.out.println(newAttack.getId());
-        System.out.println(newAttack.getName());
-        System.out.println(newAttack.getSeverity());
-        System.out.println(newAttack.getLikelihood());
-        System.out.println(newAttack.getWeaknesse());
-        System.out.println(newAttack.getPrerequisites());
-        System.out.println(newAttack.getMitigations());
+
         String insertString = PREFIX + " INSERT DATA { ";
 
         insertString += " na:" + newAttack.getId() + "attack a na:Attack; ";
@@ -79,7 +72,6 @@ public class InsertAttack {
         updateProcessorId.execute();
         System.out.println("prodje update");
 
-        //Singleton.getInstance().getAttacks().getAttacks().add(newAttack);
 
         
     }

@@ -655,7 +655,7 @@ public class BayesFrame extends JFrame {
             e1.printStackTrace();
         }
         mainFrame.setLocationRelativeTo(null);
-        mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         mainFrame.setVisible(true);
     }
     public static String getMaxAttack(String max) {
