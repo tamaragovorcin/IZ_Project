@@ -40,18 +40,21 @@ public class AllAttacks extends JDialog {
           all = get.getAttacks();
           table = new JTable();
           DefaultTableModel model = new DefaultTableModel();
-          model.setColumnIdentifiers(new Object[]{"Name","Severity","Likelihood", "Prerequisites", "Weekneses", "Mitigations", "Edit"});
+          model.setColumnIdentifiers(new Object[]{"Name","Severity","Likelihood", "Prerequisites", "Weekneses", "Mitigations", "Edit","Delete"});
 
           table.setModel(model);
 
           for (Attack attack : all) {
         	  System.out.println(attack.getMitigations().toString());
-              model.addRow(new Object[] {attack.getName(),attack.getSeverity(),attack.getLikelihood(),attack.getPrerequisites(),attack.getWeaknesse(), attack.getMitigations(),attack.getId()});
+              model.addRow(new Object[] {attack.getName(),attack.getSeverity(),attack.getLikelihood(),attack.getPrerequisites(),attack.getWeaknesse(), attack.getMitigations(),attack.getId(),attack.getId()});
           }
 
           table.getColumn("Edit").setCellRenderer(new ButtonRenderer());
           table.getColumn("Edit").setCellEditor(
               new ButtonEditor(new JCheckBox()));
+          table.getColumn("Delete").setCellRenderer(new ButtonRendererDelete());
+          table.getColumn("Delete").setCellEditor(
+              new ButtonEditorDelete(new JCheckBox()));
           JTableHeader header = table.getTableHeader();
           header.setBackground(Color.BLUE);
           JScrollPane pane = new JScrollPane(table);
