@@ -247,6 +247,7 @@ public class NewAttack extends JDialog {
 	public int genereateId() {
 		GetAttacks allAttacks = new GetAttacks();
 		ArrayList<Integer> allId = new ArrayList<Integer>();
+		allId.add(0);
 		for (Attack attack : allAttacks.getAttacks()) {
 				allId.add(Integer.parseInt(attack.getId()));
 			 

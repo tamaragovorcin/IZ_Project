@@ -2,6 +2,7 @@ package attacks.app.view.dialogues;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -262,6 +264,7 @@ public class FuzzyPanel extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (validation()) {
 				FuzzyController controller;
 				
 				controller = new FuzzyController();
@@ -287,12 +290,17 @@ public class FuzzyPanel extends JDialog {
 				System.out.println(result);
 				resultString = String.valueOf(result);
 				resultField.setText(resultString);
+				}else {
 				
+					//JOptionPane.showMessageDialog((Component) e.getSource(), "Fill input field", "Greska", JOptionPane.ERROR);
+					
+				}
 			}
 			
 		});
-		
+	
 		this.resultField.setText(resultString);
+	
 	}
 
 	public boolean validation() {
@@ -317,39 +325,49 @@ public class FuzzyPanel extends JDialog {
 
 			return false;
 		}
-		else if (this.authenticationField.getText().equals("")) {
-			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			this.authenticationField.setToolTipText("The field can not be empty!");
+		else if (this.likelyhoodField.getText().equals("")) {
+			this.likelyhoodField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.likelyhoodField.setToolTipText("The field can not be empty!");
 
 			return false;
-		}else if (this.authenticationField.getText().equals("")) {
-			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			this.authenticationField.setToolTipText("The field can not be empty!");
+		}else if (this.exploitabilityField.getText().equals("")) {
+			this.exploitabilityField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.exploitabilityField.setToolTipText("The field can not be empty!");
 
 			return false;
-		}else if (this.authenticationField.getText().equals("")) {
-			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			this.authenticationField.setToolTipText("The field can not be empty!");
+		}else if (this.impact_biasField.getText().equals("")) {
+			this.impact_biasField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.impact_biasField.setToolTipText("The field can not be empty!");
 
 			return false;
-		}else if (this.authenticationField.getText().equals("")) {
-			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			this.authenticationField.setToolTipText("The field can not be empty!");
+		}else if (this.confidentiality_impactField.getText().equals("")) {
+			this.confidentiality_impactField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.confidentiality_impactField.setToolTipText("The field can not be empty!");
 
 			return false;
-		}else if (this.authenticationField.getText().equals("")) {
-			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			this.authenticationField.setToolTipText("The field can not be empty!");
+		}else if (this.remediation_levelField.getText().equals("")) {
+			this.remediation_levelField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.remediation_levelField.setToolTipText("The field can not be empty!");
 
 			return false;
-		}else if (this.authenticationField.getText().equals("")) {
-			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			this.authenticationField.setToolTipText("The field can not be empty!");
+		}else if (this.availability_impactField.getText().equals("")) {
+			this.availability_impactField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.availability_impactField.setToolTipText("The field can not be empty!");
 
 			return false;
-		}else if (this.authenticationField.getText().equals("")) {
-			this.authenticationField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			this.authenticationField.setToolTipText("The field can not be empty!");
+		}else if (this.report_confidenceField.getText().equals("")) {
+			this.report_confidenceField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.report_confidenceField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}else if (this.collateral_damage_potentialField.getText().equals("")) {
+			this.collateral_damage_potentialField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.collateral_damage_potentialField.setToolTipText("The field can not be empty!");
+
+			return false;
+		}else if (this.target_distributionField.getText().equals("")) {
+			this.target_distributionField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			this.target_distributionField.setToolTipText("The field can not be empty!");
 
 			return false;
 		}

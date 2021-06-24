@@ -89,6 +89,8 @@ public class ButtonEditorSelect extends DefaultCellEditor {
             AttackName attack = new AttackName();
      		attack.setId(0);
      		attack.setAttackName(bestName);
+     		System.out.println("++++++++++++++++++++++++++");
+     		System.out.println(bestName);
      		
      		 MitigationsView mitigations = new MitigationsView(attack);
      		mitigations.setVisible(true);
