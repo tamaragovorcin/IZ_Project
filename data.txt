@@ -1,0 +1,193 @@
+@prefix na:    <http://www.inzenjeringznanja.com/na#> .
+@prefix xsd:   <http://w3.org/2001/XMLSchema#> .
+
+na:Id   a       na:Identification ;
+        na:id   na:1attack, na:2attack, na:3attack, na:4attack, na:5attack, na:6attack, na:7attack, na:8attack, na:9attack, na:10attack, na:11attack, na:12attack, na:13attack, na:14attack, na:15attack, na:16attack, na:16attack, na:17attack, na:18attack, na:19attack, na:20attack .
+
+na:1attack  a           na:Attack ;
+        na:id           "1"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Checking_headers_in_traffic"^^xsd:string ;
+        na:name         "infrastructure_manipulation, "^^xsd:string ;
+        na:severity     "Medium"^^xsd:string ;
+        na:prerequisites "The_adversary_requires_knowledge_of_and_access_to_network_route"^^xsd:string ;
+        na:weaknesses   "Call_to_Non_ubiquitous_API"^^xsd:string .
+
+ na:2attack  a           na:Attack ;
+        na:id           "2"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Ensure_that_the_proper_permissions_are_set_on_local_files"^^xsd:string ;
+        na:name         "cache_poisoning, "^^xsd:string ;
+        na:severity     "High"^^xsd:string ;
+        na:prerequisites "The_targeted_site_must_contain_hidden_fields_to_be_modified"^^xsd:string ;
+        na:weaknesses   "Authentication_Bypass_by_Spoofing"^^xsd:string .
+
+na:3attack  a           na:Attack ;
+        na:id           "3"^^xsd:string ;
+        na:likelihood   "Low"^^xsd:string ;
+        na:mitigations  "Use_strong_session_identifiers"^^xsd:string ;
+        na:name         "windows_data_alternate_data_stream, "^^xsd:string ;
+        na:severity     "High"^^xsd:string ;
+        na:prerequisites "The_targeted_site_must_contain_hidden_fields_to_be_modified"^^xsd:string ;
+        na:weaknesses   "Missing_Encryption_of_Sensitive_Data"^^xsd:string .
+
+na:4attack  a           na:Attack ;
+        na:id           "4"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Apply_the_least_privilege_principles"^^xsd:string ;
+        na:name         "manipulate_registry_information, "^^xsd:string ;
+        na:severity     "VeryHigh"^^xsd:string ;
+        na:prerequisites "Requires_the_existence_of_a_physical_target"^^xsd:string ;
+        na:weaknesses   "PK_API_Abuse"^^xsd:string .
+
+na:5attack  a           na:Attack ;
+        na:id           "5"^^xsd:string ;
+        na:likelihood   "High"^^xsd:string ;
+        na:mitigations  "Identify_programs_that_may_be_used_to_acquire_process_information_and_block_them"^^xsd:string ;
+        na:name         "poison_web_service_registry, "^^xsd:string ;
+        na:severity     "High"^^xsd:string ;
+        na:prerequisites "Access_to_the_software_during_the_development_phase"^^xsd:string ;
+        na:weaknesses   "Improper_Implementation_of_Lock_Protection_Registers"^^xsd:string .
+
+na:6attack  a           na:Attack ;
+        na:id           "6"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Apply_the_least_privilege_principles"^^xsd:string ;
+        na:name         "xml_schema_poisoning, "^^xsd:string ;
+        na:severity     "Low"^^xsd:string ;
+        na:prerequisites "HTTP_TRACE_is_enabled_on_the_web_server"^^xsd:string ;
+        na:weaknesses   "Missing_Encryption_of_Sensitive_Data"^^xsd:string .
+
+na:7attack  a           na:Attack ;
+        na:id           "7"^^xsd:string ;
+        na:likelihood   "Low"^^xsd:string ;
+        na:mitigations  "Ensure_that_design_documentation_is_saved_in_a_secure_location"^^xsd:string ;
+        na:name         "data_injected_during_configuration, "^^xsd:string ;
+        na:severity     "VeryHigh"^^xsd:string ;
+        na:prerequisites "A_SIM_card_that_relies_on_the_DES_cipher"^^xsd:string ;
+        na:weaknesses   "Origin_Validation_Error"^^xsd:string .
+
+na:8attack  a           na:Attack ;
+        na:id           "8"^^xsd:string ;
+        na:likelihood   "High"^^xsd:string ;
+        na:mitigations  "Validate_software_updates_before_installing"^^xsd:string ;
+        na:name         "malicious_software_update, "^^xsd:string ;
+        na:severity     "Medium"^^xsd:string ;
+        na:prerequisites "Web_services_check_the_signature_of_the_API_calls"^^xsd:string ;
+        na:weaknesses   "Improper_Implementation_of_Lock_Protection_Registers"^^xsd:string .
+
+
+
+na:9attack  a           na:Attack ;
+        na:id           "9"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Use_session_identifiers_that_are_difficult_to_guess_or_brute_force"^^xsd:string ;
+        na:name         "rooting_sim_cards, "^^xsd:string ;
+        na:severity     "VeryHigh"^^xsd:string ;
+        na:prerequisites "The_targeted_site_must_contain_hidden_fields_to_be_modified"^^xsd:string ;
+        na:weaknesses   "Device_Unlock_Credential_Sharing"^^xsd:string .
+
+
+na:10attack  a           na:Attack ;
+        na:id           "10"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Use_session_identifiers_that_are_difficult_to_guess_or_brute_force"^^xsd:string ;
+        na:name         "design_alteration, "^^xsd:string ;
+        na:severity     "High"^^xsd:string ;
+        na:prerequisites "The_adversary_requires_knowledge_of_and_access_to_network_route"^^xsd:string ;
+        na:weaknesses   "Client_Side_Enforcement_of_Server_Side_Security"^^xsd:string .
+
+
+na:11attack  a           na:Attack ;
+        na:id           "11"^^xsd:string ;
+        na:likelihood   "Low"^^xsd:string ;
+        na:mitigations  "Get_your_Public_Key_signed_by_a_Certificate_Authority"^^xsd:string ;
+        na:name         "usb_memory_attacks, "^^xsd:string ;
+        na:severity     "Medium"^^xsd:string ;
+        na:prerequisites "The_various_resources_must_be_discoverable_by_the_attacker"^^xsd:string ;
+        na:weaknesses   "Device_Unlock_Credential_Sharing"^^xsd:string .
+
+ na:12attack  a           na:Attack ;
+        na:id           "12"^^xsd:string ;
+        na:likelihood   "High"^^xsd:string ;
+        na:mitigations  "Load_configuration_from_separate_process_and_memory_space"^^xsd:string ;
+        na:name         "disabling_network_hardware, "^^xsd:string ;
+        na:severity     "VeryHigh"^^xsd:string ;
+        na:prerequisites "Physical_access_to_the_system"^^xsd:string ;
+        na:weaknesses   "Channel_Accessible_by_NonEndpoint"^^xsd:string .
+
+ na:13attack  a           na:Attack ;
+        na:id           "13"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Use_session_identifiers_that_are_difficult_to_guess_or_brute_force"^^xsd:string ;
+        na:name         "bgp_route_disabling, "^^xsd:string ;
+        na:severity     "Medium"^^xsd:string ;
+        na:prerequisites "An_attacker_and_the_victim_are_both_using_the_same_WiFi_network"^^xsd:string ;
+        na:weaknesses   "Insufficiently_Protected_Credentials"^^xsd:string .
+
+ na:14attack  a           na:Attack ;
+        na:id           "14"^^xsd:string ;
+        na:likelihood   "Low"^^xsd:string ;
+        na:mitigations  "Load_configuration_from_separate_process_and_memory_space"^^xsd:string ;
+        na:name         "cellular_jamming, "^^xsd:string ;
+        na:severity     "Low"^^xsd:string ;
+        na:prerequisites "Web_services_check_the_signature_of_the_API_calls"^^xsd:string ;
+        na:weaknesses   "Missing_Encryption_of_Sensitive_Data"^^xsd:string .
+
+ na:15attack  a           na:Attack ;
+        na:id           "15"^^xsd:string ;
+        na:likelihood   "High"^^xsd:string ;
+        na:mitigations  "Include_hosts_file"^^xsd:string ;
+        na:name         "infected_memory, "^^xsd:string ;
+        na:severity     "VeryHigh"^^xsd:string ;
+        na:prerequisites "The_target_must_use_the_affected_file_without_verifying_its_integrity"^^xsd:string ;
+        na:weaknesses   "Device_Unlock_Credential_Sharing"^^xsd:string .
+
+ na:16attack  a           na:Attack ;
+        na:id           "16"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Ensure_that_design_documentation_is_saved_in_a_secure_location"^^xsd:string ;
+        na:name         "block_access_to_libraries, "^^xsd:string ;
+        na:severity     "Low"^^xsd:string ;
+        na:prerequisites "HTTP_TRACE_is_enabled_on_the_web_server"^^xsd:string ;
+        na:weaknesses   "Client_Side_Enforcement_of_Server_Side_Security"^^xsd:string .
+
+
+
+ na:17attack  a           na:Attack ;
+        na:id           "17"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Ensure_that_design_documentation_is_saved_in_a_secure_location"^^xsd:string ;
+        na:name         "dns_blocking, "^^xsd:string ;
+        na:severity     "Low"^^xsd:string ;
+        na:prerequisites "HTTP_TRACE_is_enabled_on_the_web_server"^^xsd:string ;
+        na:weaknesses   "Client_Side_Enforcement_of_Server_Side_Security"^^xsd:string .
+
+
+na:18attack  a           na:Attack ;
+        na:id           "18"^^xsd:string ;
+        na:likelihood   "Medium"^^xsd:string ;
+        na:mitigations  "Use_session_identifiers_that_are_difficult_to_guess_or_brute_force"^^xsd:string ;
+        na:name         "rooting_sim_cards, "^^xsd:string ;
+        na:severity     "High"^^xsd:string ;
+        na:prerequisites "The_adversary_requires_knowledge_of_and_access_to_network_route"^^xsd:string ;
+        na:weaknesses   "Client_Side_Enforcement_of_Server_Side_Security"^^xsd:string .
+
+
+na:19attack  a           na:Attack ;
+        na:id           "19"^^xsd:string ;
+        na:likelihood   "Low"^^xsd:string ;
+        na:mitigations  "Use_strong_session_identifiers"^^xsd:string ;
+        na:name         "leverage_executable_code_in_non-executable_files, "^^xsd:string ;
+        na:severity     "High"^^xsd:string ;
+        na:prerequisites "The_targeted_site_must_contain_hidden_fields_to_be_modified"^^xsd:string ;
+        na:weaknesses   "Missing_Encryption_of_Sensitive_Data"^^xsd:string .
+
+ na:20attack  a           na:Attack ;
+        na:id           "20"^^xsd:string ;
+        na:likelihood   "High"^^xsd:string ;
+        na:mitigations  "Include_hosts_file"^^xsd:string ;
+        na:name         "log_injection-tampering-forging, "^^xsd:string ;
+        na:severity     "VeryHigh"^^xsd:string ;
+        na:prerequisites "The_target_must_use_the_affected_file_without_verifying_its_integrity"^^xsd:string ;
+        na:weaknesses   "Device_Unlock_Credential_Sharing"^^xsd:string .
